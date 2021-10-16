@@ -1,10 +1,8 @@
-package it.uniflix.userservice.controller.rest;
+package it.uniflix.userservice.controller.rest.filter;
 
 
 import java.io.IOException;
 import java.security.Key;
-import java.util.Enumeration;
-
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -13,11 +11,10 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.core.Response;
-
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
+import it.uniflix.userservice.utils.JWTHelpers;
 
 
 public class SecurityFilter implements Filter{  
@@ -28,7 +25,6 @@ public class SecurityFilter implements Filter{
 			FilterChain chain) throws IOException, ServletException {  
 
 		HttpServletRequest httpRequest = (HttpServletRequest) req;
-		Enumeration<String> headerNames = httpRequest.getHeaderNames();
 
 		String authTokenHeader = httpRequest.getHeader("Authorization");
 
@@ -39,20 +35,20 @@ public class SecurityFilter implements Filter{
 			
 			try{
 				Jws<Claims> jwsc = Jwts.parser().setSigningKey(key).parseClaimsJws(token);
-				String ok =jwsc.getBody().toString();
-				
-				req.setAttribute("body", ok);
-				
+				req.setAttribute("userId", jwsc.getBody().getId());
 			}catch(Exception ex) {
 				
-				//ex.printStackTrace();
+				ex.printStackTrace();
 				
 				((HttpServletResponse) resp).sendError(HttpServletResponse.SC_UNAUTHORIZED, "The token is not valid.");
 				return;
 			}
+		}else {
+			((HttpServletResponse) resp).sendError(HttpServletResponse.SC_UNAUTHORIZED, "The token is not valid.");
+			return;
 		}
 
-		chain.doFilter(req, resp);//next
+		chain.doFilter(req, resp);	//Next
 	}  
 	public void destroy() {}  
 }  

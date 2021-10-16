@@ -26,12 +26,12 @@
 	</servlet>
 	
 	<filter>  
-		<filter-name>f1</filter-name>  
-		<filter-class>it.uniflix.userservice.controller.rest.SecurityFilter</filter-class>  
+		<filter-name>SecurityFilter</filter-name>  
+		<filter-class>it.uniflix.userservice.controller.rest.filter.SecurityFilter</filter-class>  
 	</filter>
 	 <filter-mapping>
-	   <filter-name>f1</filter-name>
-	   <url-pattern>/*</url-pattern>
+	   <filter-name>SecurityFilter</filter-name>
+	   <url-pattern>/rest/userservice/library</url-pattern>
 	</filter-mapping>
 	<servlet-mapping>
 		<servlet-name>CXFNonSpringJaxrsServlet</servlet-name>

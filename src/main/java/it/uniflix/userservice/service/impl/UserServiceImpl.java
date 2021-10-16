@@ -1,16 +1,12 @@
 package it.uniflix.userservice.service.impl;
 
-import java.security.Key;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
-
-import io.jsonwebtoken.Jwts;
-import it.uniflix.userservice.controller.rest.JWTHelpers;
+import java.util.Set;
+import it.uniflix.userservice.model.Movie;
 import it.uniflix.userservice.model.User;
 import it.uniflix.userservice.service.UserService;
 import it.uniflix.userservice.service.impl.repository.UserRepository;
 import it.uniflix.userservice.service.impl.repository.impl.mongo.UserRepositoryMongo;
+import it.uniflix.userservice.utils.JWTHelpers;
 
 public class UserServiceImpl implements UserService {
 	
@@ -20,22 +16,33 @@ public class UserServiceImpl implements UserService {
 		userRepository = new UserRepositoryMongo();
 	}
 
+	@Override
 	public User signIn(User user) {
 		user  = userRepository.signIn(user);
 
 		//Create token
 		if(user != null) {
-			JWTHelpers.getInstance();
 			user.setToken(JWTHelpers.generateToken(user));
 		}
 		
 		return user;
 	}
 	
+	@Override
 	public User signUp(User user) {
 		
-		user  = userRepository.signIn(user);
+		user = userRepository.signUp(user);
+		
+		//Create token
+		if(user != null) {
+			user.setToken(JWTHelpers.generateToken(user));
+		}
 		
 		return user;
+	}
+
+	@Override
+	public Set<Movie> getLibrary(String userId) {
+		return userRepository.getLibrary(userId);
 	}
 }

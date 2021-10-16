@@ -9,19 +9,23 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import it.uniflix.userservice.model.User;
 
-
-
 @Path("/userservice")
 public interface UserController {
-
-	@GET
-	@Path("/test")
-	@Produces({MediaType.APPLICATION_JSON})
-	User test();
 	
 	@POST
 	@Path("/signin")
 	@Produces({MediaType.APPLICATION_JSON})
 	@Consumes(MediaType.APPLICATION_JSON)
 	Response signIn(User user);
+	
+	@POST
+	@Path("/signup")
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes(MediaType.APPLICATION_JSON)
+	Response signUp(User user);
+	
+	@GET
+	@Path("/library")
+	@Produces({MediaType.APPLICATION_JSON})
+	Response library();
 }
