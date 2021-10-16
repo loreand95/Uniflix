@@ -1,1 +1,1 @@
-# Uniflix
+# Uniflix - SoSE Project
