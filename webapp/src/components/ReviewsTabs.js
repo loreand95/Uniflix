@@ -8,6 +8,8 @@ import Tabs from '@mui/material/Tabs';
 import Rating from '@mui/material/Rating';
 import { getReviewsFilmById } from '../api/rest/shopService';
 
+/* DEPRECATED */
+
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
 

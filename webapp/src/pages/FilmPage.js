@@ -6,7 +6,7 @@ import { Button, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { getFilmById } from '../api/rest/shopService';
 import Skeleton from '@mui/material/Skeleton';
-import ReviewsTabs from '../components/ReviewsTabs';
+import UserReviews from '../components/UserReviews';
 import ActorScrollCards from '../components/ActorScrollCards';
 
 export default function FilmPage({ data }) {
@@ -86,7 +86,7 @@ export default function FilmPage({ data }) {
                     margin: '0 auto',
                 }}>
             {film && film.actors && <ActorScrollCards actors={film.actors}/> }
-            {film && <ReviewsTabs film={film}/> }
+            {film && <UserReviews movie={film}/> }
             </div>
         </BaseLayout>
     );
