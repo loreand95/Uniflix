@@ -5,6 +5,8 @@ import SignUpPage from '../pages/SignUpPage';
 import AccountPage from '../pages/AccountPage';
 import FilmPage from '../pages/FilmPage';
 import NotFoundPage from '../pages/NotFoundPage';
+import ProtectedRoute from './ProtectedRoute';
+import LibraryPage from '../pages/LibraryPage';
 
 export default function Routes(){
     return(
@@ -15,7 +17,8 @@ export default function Routes(){
                 </Route>
                 <Route path="/signin" component={SignInPage} />
                 <Route path="/signup" component={SignUpPage} />
-                <Route path="/account" component={AccountPage} />
+                <ProtectedRoute path="/account" component={AccountPage} />
+                <ProtectedRoute path="/library" component={LibraryPage} />
                 <Route path="/films/:id" component={FilmPage} />
                 <Route path="/home" component={HomePage} />
                 <Route path="*">

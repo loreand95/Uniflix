@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { getFilmById } from '../api/rest/shopService';
 import Skeleton from '@mui/material/Skeleton';
 import ReviewsTabs from '../components/ReviewsTabs';
+import ActorScrollCards from '../components/ActorScrollCards';
 
 export default function FilmPage({ data }) {
 
@@ -80,7 +81,13 @@ export default function FilmPage({ data }) {
                     </div>
                 </div>
             </div>
+            <div style={{
+                    maxWidth: '60%',
+                    margin: '0 auto',
+                }}>
+            {film && film.actors && <ActorScrollCards actors={film.actors}/> }
             {film && <ReviewsTabs film={film}/> }
+            </div>
         </BaseLayout>
     );
 }

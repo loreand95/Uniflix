@@ -17,7 +17,6 @@ function Carousel() {
 
     useEffect(() => {
         getAllFilmByCategory('best').then(response => {
-            console.log(response);
             setFilm(response.data[0])
         });
     }, [])

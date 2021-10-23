@@ -1,10 +1,7 @@
 import axios from 'axios';
-//import {store} from '../../redux/Store';
-//import {HttpStatus} from '../../utils';
-//import {logout} from '../../redux/action-creators/AccountActionCreators';
 
 const userServiceConfig = {
-  url: 'http://localhost:3005/rest/userservice',
+  url: 'http://localhost:8080/userservice/rest',
   timeout: 6000,
   configHeaders: {
     'Accept': 'application/json',
@@ -29,6 +26,17 @@ export async function signInFetch(user){
 export async function signUpFetch(user){
   return userService
   .post('/signup', user).then(res => res.data)
+  .catch((error) => {
+    throw error;
+  });
+}
+
+export async function getLibraryFetch(token){
+
+  userService.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+  return userService
+  .get('/library').then(res => res.data)
   .catch((error) => {
     throw error;
   });

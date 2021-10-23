@@ -7,16 +7,23 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import BaseLayout from './BaseLayout';
+import { useSelector, useDispatch } from 'react-redux'
+import { logoutAction } from '../redux/reducers/userSlice'
+import { useHistory } from "react-router-dom";
 
 export default function AccountPage() {
+
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.user);
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    
+    dispatch(logoutAction()).then(() => {
+      history.push('/home');
+    })
   };
 
   return (
@@ -35,10 +42,12 @@ export default function AccountPage() {
           <Typography component="h1" variant="h5">
             Account
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" noValidate sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={12}>
                 <TextField
+                  defaultValue={user.fullname}
+                  disabled
                   autoComplete="fname"
                   name="firstName"
                   required
@@ -48,18 +57,10 @@ export default function AccountPage() {
                   autoFocus
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="lname"
-                />
-              </Grid>
               <Grid item xs={12}>
                 <TextField
+                  defaultValue={user.email}
+                  disabled
                   required
                   fullWidth
                   id="email"
@@ -72,10 +73,10 @@ export default function AccountPage() {
           </Box>
         </Box>
         <Button
-              type="submit"
               fullWidth
               variant="contained"
               sx={{ mb: 5}}
+              onClick={handleSubmit}
             >
               Logout
             </Button>

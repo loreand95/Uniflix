@@ -5,8 +5,12 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux'
 
 export default function CustomAppBar({onlyLogo}) {
+
+  const user = useSelector((state) => state.user);
+
   return (
     <Box>
       <AppBar position="static">
@@ -18,7 +22,16 @@ export default function CustomAppBar({onlyLogo}) {
             component={Link} to={'/'}>
             Uniflix
           </Typography>
-          {!onlyLogo && <Button color="inherit" component={Link} to={'/signin'}>Sign In</Button>}
+          <>
+          {
+            user.fullname ?
+             <div>
+              <Button color="inherit" component={Link} to={'/library'}>Library</Button> 
+              <Button color="inherit" component={Link} to={'/account'}>{user.fullname}</Button>
+             </div>:
+             !onlyLogo && <Button color="inherit" component={Link} to={'/signin'}>Sign In</Button>
+          }
+          </>
         </Toolbar>
       </AppBar>
     </Box>

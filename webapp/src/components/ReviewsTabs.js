@@ -52,8 +52,6 @@ export default function ReviewsTabs({ film }) {
     return (
 
         <div style={{
-            maxWidth: '60%',
-            margin: '0 auto',
             marginTop: '25px',
         }}>
 
