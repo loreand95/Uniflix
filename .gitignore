@@ -32,3 +32,6 @@ local.properties
 
 # Locally stored "Eclipse launch configurations"
 *.launch
+services/payservice/.classpath
+services/userservice/.classpath
+services/payservice/.classpath
