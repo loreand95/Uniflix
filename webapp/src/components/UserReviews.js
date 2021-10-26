@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useEffect, useState } from "react";
-import { getReviewsFilmById } from '../api/rest/shopService';
+import { getReviewsFilmById } from '../api/rest/reviewService';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
@@ -16,14 +16,7 @@ export default function UserReviews({ movie }) {
 
   useEffect(() => {
     getReviewsFilmById(movie.id).then(setReviews);
-
   }, [movie]);
-
-  useEffect(() => {
-    console.log(reviews)
-  }, [reviews]);
-
-
 
   return (
     <Box sx={{ mt: 3 }}>

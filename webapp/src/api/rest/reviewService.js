@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const serviceConfig = {
-  url: 'http://localhost:3005/movieservice/rest',
+  url: 'http://localhost:3007/reviewservice/rest',
   timeout: 6000,
   configHeaders: {
     'Accept': 'application/json',
@@ -15,9 +15,9 @@ const service = axios.create({
   headers: serviceConfig.configHeaders,
 });
 
-export async function getActorFetch(actorId){
+export async function getReviewsFilmById(id){
   return service
-  .get('/actors/'+actorId).then(res => res.data)
+  .get('/movies/'+id).then(res => res.data)
   .catch((error) => {
     throw error;
   });
