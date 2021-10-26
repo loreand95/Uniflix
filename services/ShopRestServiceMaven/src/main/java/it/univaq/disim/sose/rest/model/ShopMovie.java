@@ -1,4 +1,4 @@
-package it.univaq.disim.sose.rest.domain;
+package it.univaq.disim.sose.rest.model;
 
 import java.time.LocalDateTime;
 

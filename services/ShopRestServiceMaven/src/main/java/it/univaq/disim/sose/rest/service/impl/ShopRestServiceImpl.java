@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import it.univaq.disim.sose.rest.service.ShopRestService;
 import it.univaq.disim.sose.rest.dao.MovieDAO;
-import it.univaq.disim.sose.rest.domain.Movie;
+import it.univaq.disim.sose.rest.model.Movie;
 
 public class ShopRestServiceImpl implements ShopRestService {
 	
