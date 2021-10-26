@@ -14,10 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 public class CORSFilter implements Filter {
 	
 	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
-		// TODO Auto-generated method stub
-		
-	}
+	public void init(FilterConfig filterConfig) throws ServletException {}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -25,10 +22,9 @@ public class CORSFilter implements Filter {
 		
 		HttpServletRequest req = (HttpServletRequest) request;
  
-        // Autorizza tutti i domini a consumare il servizio
         ((HttpServletResponse) response).addHeader("Access-Control-Allow-Origin", "*");
         ((HttpServletResponse) response).addHeader("Access-Control-Allow-Methods", "GET, OPTIONS, HEAD, PUT, POST, DELETE");
-        ((HttpServletResponse) response).addHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        ((HttpServletResponse) response).addHeader("Access-Control-Allow-Headers", "Authorization, Origin, X-Requested-With, Content-Type, Accept");
  
         HttpServletResponse resp = (HttpServletResponse) response;
  
@@ -38,13 +34,9 @@ public class CORSFilter implements Filter {
         }
  
         chain.doFilter(request, response);
-		
 	}
 
 	@Override
-	public void destroy() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void destroy() {}
 
 }

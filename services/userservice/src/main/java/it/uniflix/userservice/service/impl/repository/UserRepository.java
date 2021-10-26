@@ -13,5 +13,5 @@ public interface UserRepository {
 	
 	Set<Movie> getLibrary(String userId);
 	
-	Movie getMovie(String movieId);
+	Movie getMovie(long movieId);
 }

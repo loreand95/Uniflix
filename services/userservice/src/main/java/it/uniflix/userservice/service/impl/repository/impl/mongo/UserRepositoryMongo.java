@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.BasicDBObject;
@@ -105,6 +106,7 @@ public class UserRepositoryMongo implements UserRepository{
 				//Retrieve film from db
 				Movie movie = getMovie(order.getMovieId());
 				if(movie !=null) {
+					movie.setId(order.getMovieId());
 					movie.setPurchaseDate(order.getPurchaseDate());
 					movie.setPrice(order.getPrice());
 					
@@ -119,22 +121,23 @@ public class UserRepositoryMongo implements UserRepository{
 	}
 	
 	@Override
-	public Movie getMovie(String movieId) {
+	public Movie getMovie(long movieId) {
 
 		MongoDatabase database = MongoConnection.getDatabase();
 		MongoCollection<Document> collection = database.getCollection("Movies");
 
 		//Query
 		BasicDBObject searchQuery = new BasicDBObject();
-		searchQuery.put("id", Integer.parseInt(movieId));
+		searchQuery.put("movieId", movieId);
 
 		Document document = collection.find(searchQuery).first();
 
 		try {
-			ObjectMapper mapper = new ObjectMapper();
-			Movie movie = mapper.readValue(document.toJson(), Movie.class);
-			
-			return movie;
+			if(document != null) {
+				ObjectMapper mapper = new ObjectMapper();
+				Movie movie = mapper.readValue(document.toJson(), Movie.class);
+				return movie;
+			}			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -13,7 +13,7 @@ public class Order {
 
 	private int id;
 	
-	private String movieId;
+	private int movieId;
 	
 	private String purchaseDate;
 	
@@ -34,12 +34,12 @@ public class Order {
 	}
 
 
-	public String getMovieId() {
+	public int getMovieId() {
 		return movieId;
 	}
 
 
-	public void setMovieId(String movieId) {
+	public void setMovieId(int movieId) {
 		this.movieId = movieId;
 	}
 
