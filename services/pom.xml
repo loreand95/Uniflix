@@ -9,5 +9,6 @@
 	<modules>
 		<module>payservice</module>
 		<module>userservice</module>
+		<module>ShopRestServiceMaven</module>
 	</modules>
 </project>
