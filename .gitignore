@@ -35,3 +35,4 @@ local.properties
 services/payservice/.classpath
 services/userservice/.classpath
 services/payservice/.classpath
+*.class
