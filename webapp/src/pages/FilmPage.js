@@ -5,6 +5,7 @@ import YouTube from 'react-youtube';
 import { Button, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { getFilmById } from '../api/rest/shopService';
+import { getActorsFetch } from '../api/rest/filmService';
 import Skeleton from '@mui/material/Skeleton';
 import UserReviews from '../components/UserReviews';
 import ActorScrollCards from '../components/ActorScrollCards';
@@ -14,12 +15,12 @@ export default function FilmPage({ data }) {
     const { id } = useParams();
 
     const [film, setFilm] = useState();
+    const [actors, setActors] = useState();
 
     useEffect(() => {
         if (id) {
-            getFilmById(id).then(res => {
-                setFilm(res)
-            });
+            getFilmById(id).then(setFilm);
+            getActorsFetch(id).then(setActors);
         }
     }, [id]);
 
@@ -85,7 +86,7 @@ export default function FilmPage({ data }) {
                     maxWidth: '60%',
                     margin: '0 auto',
                 }}>
-            {film && film.actors && <ActorScrollCards actors={film.actors}/> }
+            {film && actors && <ActorScrollCards actors={actors}/> }
             {film && <UserReviews movie={film}/> }
             </div>
         </BaseLayout>

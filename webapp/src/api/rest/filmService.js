@@ -22,3 +22,11 @@ export async function getActorFetch(actorId){
     throw error;
   });
 }
+
+export async function getActorsFetch(movieId){
+  return service
+  .get('/movies/'+movieId+'/actors').then(res => res.data)
+  .catch((error) => {
+    throw error;
+  });
+}
