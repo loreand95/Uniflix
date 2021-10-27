@@ -30,3 +30,11 @@ export async function getFilmById(id){
     throw error;
   });
 }
+
+export async function buyMovieFetch(id){
+  return shopService
+  .post('/movies/'+id+'/buy').then(res => res.data)
+  .catch((error) => {
+    throw error;
+  });
+}
