@@ -27,7 +27,7 @@
 	
 	<filter>
 		<filter-name>CorsFilter</filter-name>
-		<filter-class>it.uniflix.userservice.controller.rest.filter.CORSFilter</filter-class>
+		<filter-class>it.univaq.disim.sose.rest.controller.filter.CORSFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>CorsFilter</filter-name>
@@ -35,7 +35,7 @@
 	</filter-mapping>
 	<filter>
 		<filter-name>SecurityFilter</filter-name>
-		<filter-class>it.uniflix.userservice.controller.rest.filter.SecurityFilter</filter-class>
+		<filter-class>it.univaq.disim.sose.rest.controller.filter.SecurityFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>SecurityFilter</filter-name>
