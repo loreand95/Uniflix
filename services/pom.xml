@@ -8,7 +8,6 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>payservice</module>
-		<module>movieservice</module>
 		<module>userservice</module>
 		<module>ShopRestServiceMaven</module>
 	</modules>
