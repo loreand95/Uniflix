@@ -92,7 +92,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		<finalName>ShopRestService</finalName>
+		<finalName>ShopService</finalName>
 	</build>
   
 </project>

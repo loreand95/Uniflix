@@ -1,4 +1,4 @@
-package it.univaq.disim.sose.rest.service;
+package it.univaq.disim.sose.rest.controller;
 import java.util.List;
 
 import javax.ws.rs.Consumes;

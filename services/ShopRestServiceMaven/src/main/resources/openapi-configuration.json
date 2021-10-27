@@ -1,0 +1,24 @@
+{
+	"resourcePackages": ["it.univaq.disim.sose.rest.service"],
+	"prettyPrint": true,
+	"cacheTTL": 0,
+	"openAPI": {
+		"info": {
+			"version": "1.0.0",
+			"title": "ShopRestServiceMaven",
+			"description": "Service for shop movies",
+			"contact": {"email": "cxf-dev@apache.org"},
+			"license": {
+				"name": "Apache 2.0",
+				"url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+			}
+		},
+		"servers": [
+			{
+				"url": "http://localhost:8080/shopservice/rest",
+				"description": "ShopRestServiceMaven, REST version"
+			}
+		]
+	},
+	"userDefinedOptions": {"support.swagger.ui": true}
+}
