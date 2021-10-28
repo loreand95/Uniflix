@@ -1,4 +1,4 @@
-package it.uniflix.userservice.controller.rest.filter;
+package it.univaq.disim.sose.rest.controller.filter;
 
 import java.io.IOException;
 

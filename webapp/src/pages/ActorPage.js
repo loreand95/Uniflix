@@ -42,8 +42,8 @@ function ActorDetail({ actor }) {
           style={{
             borderRadius: '100%',
             position: 'relative',
-            maxWidth: 200,
-            minHeight: 200,
+            width: 200,
+            height: 200,
             objectFit: "cover"
           }} />
         <Typography

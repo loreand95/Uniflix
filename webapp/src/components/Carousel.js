@@ -7,7 +7,13 @@ import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     showBtn: { position: 'absolute', right: '50px', bottom: '30px' },
-    title: { position: 'absolute', left: '5%', top: '40%' }
+    title: { position: 'absolute', left: '5%', top: '40%' },
+    description: {
+        fontWeight: 900,
+        [theme.breakpoints.down('sm')]: {
+            visibility: 'hidden',
+        },
+    }
 }));
 
 function Carousel() {
@@ -42,8 +48,8 @@ function Carousel() {
                     {film.title}
                 </Typography>
                 <Typography
+                    className={classes.description}
                     variant='h6'
-                    style={{ fontWeight: 900 }}
                     color='white'>
                     {film.year} - {film.author} - {film.duration} min
                 </Typography>

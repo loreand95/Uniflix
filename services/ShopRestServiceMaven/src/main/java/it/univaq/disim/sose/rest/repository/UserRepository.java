@@ -1,9 +1,12 @@
-package it.uniflix.userservice.service.impl.repository;
+package it.univaq.disim.sose.rest.repository;
 
 import java.util.Set;
 
-import it.uniflix.userservice.model.Movie;
-import it.uniflix.userservice.model.User;
+import it.univaq.disim.sose.rest.model.Movie;
+import it.univaq.disim.sose.rest.model.User;
+
+
+
 
 public interface UserRepository {
 	

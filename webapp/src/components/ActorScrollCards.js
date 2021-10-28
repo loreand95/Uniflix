@@ -42,11 +42,11 @@ export default function ActorScrollCards({actors}) {
       >
         {items.map((actor) => (
           <ActorCard
-            itemId={actor.id}
-            key={actor.id}
+            itemId={actor.actorId}
+            key={actor.actorId}
             actor ={actor}
-            onClick={handleClick(actor.id)}
-            selected={isItemSelected(actor.id)}
+            onClick={handleClick(actor.actorId)}
+            selected={isItemSelected(actor.actorId)}
           />)
         )}
       </ScrollMenu>

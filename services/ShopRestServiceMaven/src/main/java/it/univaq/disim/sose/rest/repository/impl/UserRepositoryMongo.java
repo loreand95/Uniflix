@@ -1,4 +1,4 @@
-package it.uniflix.userservice.service.impl.repository.impl.mongo;
+package it.univaq.disim.sose.rest.repository.impl;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,11 +17,16 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
-import it.uniflix.userservice.model.Movie;
-import it.uniflix.userservice.model.Order;
-import it.uniflix.userservice.model.User;
-import it.uniflix.userservice.service.impl.repository.UserRepository;
-import it.uniflix.userservice.utils.PasswordUtils;
+import it.univaq.disim.sose.rest.model.Movie;
+import it.univaq.disim.sose.rest.model.Order;
+import it.univaq.disim.sose.rest.model.PurchasedMovie;
+import it.univaq.disim.sose.rest.model.User;
+import it.univaq.disim.sose.rest.repository.UserRepository;
+import it.univaq.disim.sose.rest.utils.PasswordUtils;
+
+
+
+
 
 public class UserRepositoryMongo implements UserRepository{
 
@@ -104,9 +109,10 @@ public class UserRepositoryMongo implements UserRepository{
 				Order order = mapper.readValue(orderDoc.toJson(), Order.class);
 			
 				//Retrieve film from db
-				Movie movie = getMovie(order.getMovieId());
+				PurchasedMovie movie = getMovie(order.getMovieId());
 				if(movie !=null) {
-					movie.setId(order.getMovieId());
+					// TODO verificare i  tipi implementati per movie
+					movie.setId(Long.toString(order.getMovieId()));
 					movie.setPurchaseDate(order.getPurchaseDate());
 					movie.setPrice(order.getPrice());
 					
@@ -121,7 +127,7 @@ public class UserRepositoryMongo implements UserRepository{
 	}
 	
 	@Override
-	public Movie getMovie(long movieId) {
+	public PurchasedMovie getMovie(long movieId) {
 
 		MongoDatabase database = MongoConnection.getDatabase();
 		MongoCollection<Document> collection = database.getCollection("Movies");
@@ -135,7 +141,7 @@ public class UserRepositoryMongo implements UserRepository{
 		try {
 			if(document != null) {
 				ObjectMapper mapper = new ObjectMapper();
-				Movie movie = mapper.readValue(document.toJson(), Movie.class);
+				PurchasedMovie movie = mapper.readValue(document.toJson(), PurchasedMovie.class);
 				return movie;
 			}			
 		} catch (IOException e) {

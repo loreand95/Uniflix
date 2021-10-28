@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from "react";
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -13,14 +14,21 @@ import BaseLayout from './BaseLayout';
 import { useDispatch } from 'react-redux'
 import { signInAction } from '../redux/reducers/userSlice'
 import { useHistory } from "react-router-dom";
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function SignInPage() {
 
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const [loading, setLoading] = useState();
+
+  const [authError, setAuthError] = useState({error:false,helperText:''});
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    
+    setLoading(true);
     const data = new FormData(event.currentTarget);
 
     const user = {
@@ -29,8 +37,13 @@ export default function SignInPage() {
     }
 
     dispatch(signInAction(user)).then(() => {
+      setLoading(false);
       history.push('/home');
-    })
+    }).catch(err =>{
+      setLoading(false);
+      setAuthError({...authError,error:true, helperText:'Wrong password'})
+      console.log(err)
+    });
   };
 
   return (
@@ -61,6 +74,8 @@ export default function SignInPage() {
               autoFocus
             />
             <TextField
+              error={authError.error}
+              helperText={authError.helperText}
               margin="normal"
               defaultValue="123456"
               required
@@ -81,7 +96,9 @@ export default function SignInPage() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              {
+                loading ? <CircularProgress size={20} style={{ color: 'white' }} /> : 'Sign In'
+              }
             </Button>
             <Grid container>
               <Grid item xs>

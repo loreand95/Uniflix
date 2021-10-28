@@ -1,4 +1,4 @@
-package it.uniflix.userservice.model;
+package it.univaq.disim.sose.rest.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -13,7 +13,7 @@ public class Order {
 
 	private int id;
 	
-	private int movieId;
+	private long movieId;
 	
 	private String purchaseDate;
 	
@@ -34,12 +34,12 @@ public class Order {
 	}
 
 
-	public int getMovieId() {
+	public long getMovieId() {
 		return movieId;
 	}
 
 
-	public void setMovieId(int movieId) {
+	public void setMovieId(long movieId) {
 		this.movieId = movieId;
 	}
 

@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude(Include.NON_NULL)
 public class Movie {
 	
-	private int id;
+	private long id;
 	
 	private String title;
 	
@@ -26,12 +26,12 @@ public class Movie {
 
 
 		
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
