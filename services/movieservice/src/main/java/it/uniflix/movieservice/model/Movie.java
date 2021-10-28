@@ -29,10 +29,10 @@ public class Movie {
 	private List<ProductionCompany> productionCompanies;
 	private long revenue;
 	private int runtime;
-	private String tagline;
 	private Double voteAverage;
 	private int voteCount;
 	private String status;
+	private long movieId;
 	
 	public Movie() {}
 
@@ -172,14 +172,6 @@ public class Movie {
 		this.runtime = runtime;
 	}
 
-	public String getTagline() {
-		return tagline;
-	}
-
-	public void setTagline(String tagline) {
-		this.tagline = tagline;
-	}
-
 	public Double getVoteAverage() {
 		return voteAverage;
 	}
@@ -202,6 +194,14 @@ public class Movie {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	
+	public long getMovieId() {
+		return movieId;
+	}
+
+	public void setMovieId(long movieId) {
+		this.movieId = movieId;
 	}
 
 	@Override
@@ -236,7 +236,7 @@ public class Movie {
 				+ releaseDate + ", adult=" + adult + ", budget=" + budget + ", genres=" + genres + ", homepage="
 				+ homepage + ", overview=" + overview + ", imdbID=" + imdbID + ", originalLanguage=" + originalLanguage
 				+ ", productionCompanies=" + productionCompanies + ", revenue=" + revenue + ", runtime=" + runtime
-				+ ", tagline=" + tagline + ", voteAverage=" + voteAverage + ", voteCount=" + voteCount + ", status="
+				+ ", movieId=" + movieId + ", voteAverage=" + voteAverage + ", voteCount=" + voteCount + ", status="
 				+ status + "]";
 	}
 	
