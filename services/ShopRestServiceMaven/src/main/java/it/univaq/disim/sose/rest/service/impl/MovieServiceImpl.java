@@ -8,17 +8,50 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.bson.Document;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mongodb.util.JSON;
 
 import it.univaq.disim.sose.rest.utils.EndPointApi;
-import it.uniflix.userservice.model.Order;
-import it.univaq.disim.sose.rest.model.Movie;
+import it.uniflix.movieservice.model.Movie;
 import it.univaq.disim.sose.rest.model.MovieList;
 import it.univaq.disim.sose.rest.model.Movie_old;
 
 
 public class MovieServiceImpl {
+	
+	public static void main(String[] args) {
+		WebClient client = WebClient.create( EndPointApi.MOVIE_SERVICE);
+		Response response = client.accept(MediaType.APPLICATION_JSON).get();
+
+		String value = response.readEntity(String.class);
+		
+		System.out.println(value);
+		
+		JSONArray moviesJson = new JSONArray(value);
+		
+		ObjectMapper mapper = new ObjectMapper();
+		List<Movie> movies = new ArrayList<>();
+		
+		for(Object o: moviesJson) {
+			try {
+				Movie movie = mapper.readValue(o.toString(), Movie.class);
+				
+				movies.add(movie);
+			} catch (JsonProcessingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		
+		System.out.println(movies);
+		
+	}
 	
 	
 	
@@ -32,31 +65,19 @@ public class MovieServiceImpl {
 		Response response = client.accept(MediaType.APPLICATION_JSON).get();
 
 		String value = response.readEntity(String.class);
+		
+		System.out.println(value);
+		
+		JSONArray moviesJson = new JSONArray(value);
 
 		//JsonObject jsonObject = new JsonParser().parse(json).getAsJsonObject();
 		
-		//ObjectMapper mapper = new ObjectMapper();
-		
-		
-/*		
-		for(Document orderDoc : orders) {
 
-			try {
-				Order order = mapper.readValue(orderDoc.toJson(), Order.class);
-			
-				//Retrieve film from db
-				Movie movie = getMovie(order.getMovieId());
-				if(movie !=null) {
-					movie.setId(order.getMovieId());
-					movie.setPurchaseDate(order.getPurchaseDate());
-					movie.setPrice(order.getPrice());
-					
-					movies.add(movie);
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}*/
+		
+		
+		//List<Movie> order = mapper.
+		
+
 		
 		System.out.println("The response is -------------------------- " + value);
 		

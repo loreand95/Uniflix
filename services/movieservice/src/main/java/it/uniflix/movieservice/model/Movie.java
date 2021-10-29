@@ -6,12 +6,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.bson.types.ObjectId;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @XmlRootElement(name="Movies")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Movie {
 	
+	@JsonIgnore
 	private ObjectId id;
 	private String title;
 	private String originalTitle;

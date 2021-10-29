@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@XmlRootElement(name="Movies")
+@XmlRootElement(name="ActorCast")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ActorCast {
 	private long actorId;
