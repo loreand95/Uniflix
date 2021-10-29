@@ -1,15 +1,18 @@
 package it.univaq.disim.sose.rest.service.impl;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import org.apache.cxf.jaxrs.client.WebClient;
+import org.bson.Document;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import it.univaq.disim.sose.rest.utils.EndPointApi;
+import it.uniflix.userservice.model.Order;
 import it.univaq.disim.sose.rest.model.Movie;
 import it.univaq.disim.sose.rest.model.MovieList;
 import it.univaq.disim.sose.rest.model.Movie_old;
@@ -30,11 +33,34 @@ public class MovieServiceImpl {
 
 		String value = response.readEntity(String.class);
 
+		//JsonObject jsonObject = new JsonParser().parse(json).getAsJsonObject();
 		
-		ObjectMapper mapper = new ObjectMapper();
+		//ObjectMapper mapper = new ObjectMapper();
+		
+		
+/*		
+		for(Document orderDoc : orders) {
+
+			try {
+				Order order = mapper.readValue(orderDoc.toJson(), Order.class);
+			
+				//Retrieve film from db
+				Movie movie = getMovie(order.getMovieId());
+				if(movie !=null) {
+					movie.setId(order.getMovieId());
+					movie.setPurchaseDate(order.getPurchaseDate());
+					movie.setPrice(order.getPrice());
+					
+					movies.add(movie);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}*/
 		
 		System.out.println("The response is -------------------------- " + value);
-		Movie value2 = response.readEntity(Movie.class);
+		
+		//MovieList value2 =  response.readEntity(MovieList.class);
 
 		//System.out.println("The value2 size -------------------------- " + value2.size());
 		List <Movie_old> movies = new ArrayList<Movie_old>();
