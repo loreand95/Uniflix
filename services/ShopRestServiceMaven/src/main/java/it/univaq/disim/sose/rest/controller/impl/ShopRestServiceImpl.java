@@ -1,4 +1,4 @@
-package it.univaq.disim.sose.rest.controller.impl;
+/*package it.univaq.disim.sose.rest.controller.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,4 +26,4 @@ public class ShopRestServiceImpl implements ShopRestService {
 
 	
 
-}
+}*/

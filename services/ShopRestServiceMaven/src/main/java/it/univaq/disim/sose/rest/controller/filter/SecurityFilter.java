@@ -37,15 +37,19 @@ public class SecurityFilter implements Filter{
 				Jws<Claims> jwsc = Jwts.parser().setSigningKey(key).parseClaimsJws(token);
 				req.setAttribute("userId", jwsc.getBody().getId());
 			}catch(Exception ex) {
-				
+				System.out.println("-------------------Prima ECCEZIONE");
 				ex.printStackTrace();
 				
 				((HttpServletResponse) resp).sendError(HttpServletResponse.SC_UNAUTHORIZED, "The token is not valid.");
 				return;
 			}
 		}else {
+			
+			if(httpRequest.getRequestURI().contains("/buy")) {
+				System.out.println("-----------------------ERRORE dentro IF");
 			((HttpServletResponse) resp).sendError(HttpServletResponse.SC_UNAUTHORIZED, "The token is not valid.");
 			return;
+			}
 		}
 
 		chain.doFilter(req, resp);	//Next

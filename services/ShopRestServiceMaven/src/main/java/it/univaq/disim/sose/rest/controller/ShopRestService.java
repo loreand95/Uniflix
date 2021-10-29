@@ -8,15 +8,15 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import it.univaq.disim.sose.rest.model.Movie;
+import it.univaq.disim.sose.rest.model.Movie_old;
 
 
-@Path("/shoprestservice")
+//@Path("/shoprestservice")
 public interface ShopRestService {
-@GET
-@Path("movies")
-@Produces({MediaType.TEXT_PLAIN})
-public List<Movie> getAllMovies();
+//@GET
+//@Path("movies")
+//@Produces({MediaType.TEXT_PLAIN})
+public List<Movie_old> getAllMovies();
 }
 
 

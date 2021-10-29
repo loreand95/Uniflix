@@ -12,7 +12,7 @@
 		<init-param>
 			<param-name>jaxrs.serviceClasses</param-name>
 			<param-value>
-				it.univaq.disim.sose.rest.controller.impl.ShopRestServiceImpl
+				it.univaq.disim.sose.rest.controller.impl.ShopRestServiceApiImpl
 			</param-value>
 		</init-param>
 		<init-param>
@@ -22,7 +22,8 @@
 		<init-param>
 			<param-name>jaxrs.providers</param-name>
 			<param-value>com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider</param-value>
-		</init-param>
+		</init-param>	
+        
 	</servlet>
 	
 	<filter>

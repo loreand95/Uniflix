@@ -17,7 +17,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
-import it.univaq.disim.sose.rest.model.Movie;
+import it.univaq.disim.sose.rest.model.Movie_old;
 import it.univaq.disim.sose.rest.model.Order;
 import it.univaq.disim.sose.rest.model.PurchasedMovie;
 import it.univaq.disim.sose.rest.model.User;
@@ -85,9 +85,9 @@ public class UserRepositoryMongo implements UserRepository{
 	}
 
 	@Override
-	public Set<Movie> getLibrary(String userId) {
+	public Set<Movie_old> getLibrary(String userId) {
 
-		Set<Movie> movies = new HashSet<Movie>();
+		Set<Movie_old> movies = new HashSet<Movie_old>();
 		
 		//Connection
 		MongoDatabase database = MongoConnection.getDatabase();

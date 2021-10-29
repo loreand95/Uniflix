@@ -2,7 +2,7 @@ package it.univaq.disim.sose.rest.model;
 
 import java.util.List;
 
-public class PurchasedMovie extends Movie{
+public class PurchasedMovie extends Movie_old{
 
 	
 	private String purchaseDate;
