@@ -8,6 +8,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Context;
 
+import org.json.JSONArray;
+
 import it.univaq.disim.sose.rest.controller.ShopServiceRestApi;
 import it.univaq.disim.sose.rest.model.Movie_old;
 import it.univaq.disim.sose.rest.service.impl.MovieServiceImpl;

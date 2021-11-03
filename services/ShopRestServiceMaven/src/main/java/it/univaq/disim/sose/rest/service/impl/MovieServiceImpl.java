@@ -2,6 +2,7 @@ package it.univaq.disim.sose.rest.service.impl;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.ws.rs.core.MediaType;
@@ -17,7 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.util.JSON;
 
 import it.univaq.disim.sose.rest.utils.EndPointApi;
-import it.uniflix.movieservice.model.Movie;
+import it.univaq.disim.sose.rest.model.Movie;
 import it.univaq.disim.sose.rest.model.MovieList;
 import it.univaq.disim.sose.rest.model.Movie_old;
 
@@ -70,20 +71,35 @@ public class MovieServiceImpl {
 		
 		JSONArray moviesJson = new JSONArray(value);
 
-		//JsonObject jsonObject = new JsonParser().parse(json).getAsJsonObject();
 		
 
 		
-		
-		//List<Movie> order = mapper.
-		
-
-		
-		System.out.println("The response is -------------------------- " + value);
+		System.out.println("The response is -------------------------- " + moviesJson);
 		
 		//MovieList value2 =  response.readEntity(MovieList.class);
 
 		//System.out.println("The value2 size -------------------------- " + value2.size());
+		List <Movie> moviesPojo = new ArrayList<Movie>();
+        ObjectMapper mapper = new ObjectMapper();
+        String json = moviesJson.toString();
+        try {
+
+
+
+            // 2. convert JSON array to List of objects
+             moviesPojo = Arrays.asList(mapper.readValue(json, Movie[].class));
+
+            System.out.println("\nJSON array to List of objects");
+            moviesPojo.stream().forEach(x -> System.out.println(x));
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        System.out.println("\nJSON array to List of objects"+moviesPojo);
+		
 		List <Movie_old> movies = new ArrayList<Movie_old>();
 		Movie_old movie1 = new Movie_old("via col vento", null, null);
 		Movie_old movie2 = new Movie_old("Avengers", null, null);
