@@ -19,14 +19,12 @@ public class ActorServiceImpl implements ActorService{
 
 	@Override
 	public List<ActorCast> getMovieCast(long movieId) {
-		// TODO Auto-generated method stub
-		return null;
+		return actorRepo.getMovieCast(movieId);
 	}
 
 	@Override
 	public ActorDetail getActor(long actorId) {
-		// TODO Auto-generated method stub
-		return null;
+		return actorRepo.getActor(actorId);
 	}
 
 
