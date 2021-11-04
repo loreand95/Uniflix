@@ -1,7 +1,6 @@
 package it.uniflix.movieservice.repository.impl;
 
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 
 import org.bson.types.ObjectId;
 

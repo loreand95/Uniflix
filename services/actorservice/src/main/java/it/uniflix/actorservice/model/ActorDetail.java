@@ -6,7 +6,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @XmlRootElement(name="ActorDetail")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ActorDetail {
-	private long actorId
-
+public class ActorDetail extends ActorCast {
+	private String biography;
+	private String birthday;
+	private String birthplace;
 }
