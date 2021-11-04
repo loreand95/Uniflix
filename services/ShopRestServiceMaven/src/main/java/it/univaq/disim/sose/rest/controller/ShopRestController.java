@@ -12,7 +12,7 @@ import it.univaq.disim.sose.rest.model.Movie_old;
 
 
 //@Path("/shoprestservice")
-public interface ShopRestService {
+public interface ShopRestController {
 //@GET
 //@Path("movies")
 //@Produces({MediaType.TEXT_PLAIN})

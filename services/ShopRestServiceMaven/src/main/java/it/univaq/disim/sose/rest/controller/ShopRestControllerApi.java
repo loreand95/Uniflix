@@ -22,10 +22,12 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import it.univaq.disim.sose.rest.model.Movie;
 import it.univaq.disim.sose.rest.model.Movie_old;
+import it.univaq.disim.sose.rest.model.PurchasedMovie;
 
 @Path("/shop")
-public interface ShopServiceRestApi {
+public interface ShopRestControllerApi {
 
 	@Operation( 
 		       description = "The description of the getTodos operation goes here!",
@@ -45,7 +47,7 @@ public interface ShopServiceRestApi {
 			 )
 		    @GET
 		    //@Produces({MediaType.TEXT_XML, MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-		    public List<Movie_old> getAllMovies();
+		    public List<PurchasedMovie> getAllMovies();
 		    
 			@Operation(
 		       description = "The description of the getTodo operation goes here!",

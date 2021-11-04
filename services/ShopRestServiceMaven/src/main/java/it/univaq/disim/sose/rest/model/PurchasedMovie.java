@@ -1,15 +1,22 @@
 package it.univaq.disim.sose.rest.model;
 
-import java.util.List;
+import javax.xml.bind.annotation.XmlRootElement;
 
-public class PurchasedMovie extends Movie_old{
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-	
+@XmlRootElement(name="Movies")
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class PurchasedMovie extends Movie{
+
+	@JsonIgnore
 	private String purchaseDate;
 	private double price;
 	
-	public PurchasedMovie(String title, String description, List<String> actors, String purchaseDate, double price) {
-		super(title, description, actors);
+	public PurchasedMovie() {}
+	
+	public PurchasedMovie( String purchaseDate, double price) {
+		super();
 		this.purchaseDate = purchaseDate;
 		this.price = price;
 	}

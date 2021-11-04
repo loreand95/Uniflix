@@ -85,9 +85,9 @@ public class UserRepositoryMongo implements UserRepository{
 	}
 
 	@Override
-	public Set<Movie_old> getLibrary(String userId) {
+	public Set<PurchasedMovie> getLibrary(String userId) {
 
-		Set<Movie_old> movies = new HashSet<Movie_old>();
+		Set<PurchasedMovie> movies = new HashSet<PurchasedMovie>();
 		
 		//Connection
 		MongoDatabase database = MongoConnection.getDatabase();
@@ -112,7 +112,8 @@ public class UserRepositoryMongo implements UserRepository{
 				PurchasedMovie movie = getMovie(order.getMovieId());
 				if(movie !=null) {
 					// TODO verificare i  tipi implementati per movie
-					movie.setId(Long.toString(order.getMovieId()));
+
+					movie.setMovieId(order.getMovieId());
 					movie.setPurchaseDate(order.getPurchaseDate());
 					movie.setPrice(order.getPrice());
 					

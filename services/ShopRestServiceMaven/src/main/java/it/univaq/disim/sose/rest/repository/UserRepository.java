@@ -3,6 +3,7 @@ package it.univaq.disim.sose.rest.repository;
 import java.util.Set;
 
 import it.univaq.disim.sose.rest.model.Movie_old;
+import it.univaq.disim.sose.rest.model.PurchasedMovie;
 import it.univaq.disim.sose.rest.model.User;
 
 
@@ -14,7 +15,7 @@ public interface UserRepository {
 	
 	User signUp(User user);
 	
-	Set<Movie_old> getLibrary(String userId);
+	Set<PurchasedMovie> getLibrary(String userId);
 	
-	Movie_old getMovie(long movieId);
+	PurchasedMovie getMovie(long movieId);
 }

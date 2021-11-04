@@ -12,7 +12,7 @@
 		<init-param>
 			<param-name>jaxrs.serviceClasses</param-name>
 			<param-value>
-				it.univaq.disim.sose.rest.controller.impl.ShopRestServiceApiImpl
+				it.univaq.disim.sose.rest.controller.impl.ShopRestControllerApiImpl
 			</param-value>
 		</init-param>
 		<init-param>
@@ -40,7 +40,7 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>SecurityFilter</filter-name>
-		<url-pattern>/rest/library</url-pattern>
+		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
 	<servlet-mapping>
