@@ -13,7 +13,7 @@ public class Order {
 
 	private int id;
 	
-	private int movieId;
+	private long movieId;
 	
 	private String purchaseDate;
 	
@@ -34,12 +34,12 @@ public class Order {
 	}
 
 
-	public int getMovieId() {
+	public long getMovieId() {
 		return movieId;
 	}
 
 
-	public void setMovieId(int movieId) {
+	public void setMovieId(long movieId) {
 		this.movieId = movieId;
 	}
 

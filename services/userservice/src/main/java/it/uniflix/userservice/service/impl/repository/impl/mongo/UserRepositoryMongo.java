@@ -106,7 +106,7 @@ public class UserRepositoryMongo implements UserRepository{
 				//Retrieve film from db
 				Movie movie = getMovie(order.getMovieId());
 				if(movie !=null) {
-					movie.setId(order.getMovieId());
+					movie.setMovieId(order.getMovieId());
 					movie.setPurchaseDate(order.getPurchaseDate());
 					movie.setPrice(order.getPrice());
 					
