@@ -17,7 +17,7 @@ import io.jsonwebtoken.Jwts;
 import it.uniflix.userservice.utils.JWTHelpers;
 
 
-public class SecurityFilter implements Filter{  
+public class AuthenticationFilter implements Filter{  
 
 	public void init(FilterConfig arg0) throws ServletException {}  
 
@@ -43,9 +43,6 @@ public class SecurityFilter implements Filter{
 				((HttpServletResponse) resp).sendError(HttpServletResponse.SC_UNAUTHORIZED, "The token is not valid.");
 				return;
 			}
-		}else {
-			((HttpServletResponse) resp).sendError(HttpServletResponse.SC_UNAUTHORIZED, "The token is not valid.");
-			return;
 		}
 
 		chain.doFilter(req, resp);	//Next

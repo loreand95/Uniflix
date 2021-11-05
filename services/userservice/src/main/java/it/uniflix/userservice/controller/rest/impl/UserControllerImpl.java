@@ -6,6 +6,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import it.uniflix.userservice.controller.rest.UserController;
+import it.uniflix.userservice.model.AuthUser;
 import it.uniflix.userservice.model.Movie;
 import it.uniflix.userservice.model.User;
 import it.uniflix.userservice.service.UserService;
@@ -62,5 +63,24 @@ public class UserControllerImpl implements UserController{
 		}else {
 			return Response.status(401).build();
 		}
+	}
+
+
+
+	@Override
+	public Response isAuth() {
+		
+		String userId = (String) httpServletRequest.getAttribute("userId");
+		
+		AuthUser authUser = new AuthUser();
+		
+		if(userId!=null) {
+			authUser.setAuth(true);
+			authUser.setUserId(userId);
+		}else {
+			authUser.setAuth(false);
+		}
+		
+		return Response.ok(authUser, MediaType.APPLICATION_JSON).build();
 	}
 }

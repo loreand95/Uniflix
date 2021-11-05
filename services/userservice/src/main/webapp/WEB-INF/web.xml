@@ -34,13 +34,24 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<filter>
-		<filter-name>SecurityFilter</filter-name>
-		<filter-class>it.uniflix.userservice.controller.rest.filter.SecurityFilter</filter-class>
+		<filter-name>AuthenticationFilter</filter-name>
+		<filter-class>it.uniflix.userservice.controller.rest.filter.AuthenticationFilter</filter-class>
 	</filter>
 	<filter-mapping>
-		<filter-name>SecurityFilter</filter-name>
+		<filter-name>AuthenticationFilter</filter-name>
+		<url-pattern>/rest/library</url-pattern>
+		<url-pattern>/rest/isauth</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>AuthorizationFilter</filter-name>
+		<filter-class>it.uniflix.userservice.controller.rest.filter.AuthorizationFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AuthorizationFilter</filter-name>
 		<url-pattern>/rest/library</url-pattern>
 	</filter-mapping>
+	
 	<servlet-mapping>
 		<servlet-name>CXFNonSpringJaxrsServlet</servlet-name>
 		<url-pattern>/*</url-pattern>
