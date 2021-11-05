@@ -4,14 +4,14 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @XmlRootElement(name="ActorCast")
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Credit {
 
 	private long movieId;
 	private List<ActorCast> cast;
+	
+	public Credit() {}
 	
 	public long getMovieId() {
 		return movieId;
@@ -25,6 +25,12 @@ public class Credit {
 	public void setCast(List<ActorCast> cast) {
 		this.cast = cast;
 	}
+
+	@Override
+	public String toString() {
+		return "Credit [movieId=" + movieId + ", cast=" + cast + "]";
+	}
+	
 	
 	
 }
