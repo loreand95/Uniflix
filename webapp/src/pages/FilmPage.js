@@ -47,6 +47,7 @@ export default function FilmPage({ data }) {
                     <div style={{
                         maxWidth: '60%',
                         margin: '0 auto',
+                        marginTop:'15px'
                     }}>
                         <Typography
                             variant='h3'>

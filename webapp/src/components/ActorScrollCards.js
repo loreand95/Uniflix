@@ -33,7 +33,7 @@ export default function ActorScrollCards({actors}) {
         }}
         variant='h4'
         >
-       Actors
+       Cast
       </Typography>
       <ScrollMenu
         LeftArrow={LeftArrow}
