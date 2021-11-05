@@ -25,6 +25,8 @@ public class ShopRestControllerApiImpl implements ShopRestControllerApi{
 	@Override
 	public List<PurchasedMovie> getAllMovies() {
 		
+		String authTokenHeader = httpServletRequest.getHeader("Authorization");
+		
 		List <PurchasedMovie> movies = new ArrayList<>();
 		MovieServiceImpl movieService = new MovieServiceImpl();
 		String userId = (String) httpServletRequest.getAttribute("userId");
@@ -34,7 +36,7 @@ public class ShopRestControllerApiImpl implements ShopRestControllerApi{
 		if(userId != null) {
 			List <PurchasedMovie> library = new ArrayList<>();
 			UserServiceImpl userService = new UserServiceImpl();
-			library = userService.getUserLibrary();
+			library = userService.getUserLibrary(authTokenHeader);
 			System.out.println("LIBRARY --------"+userId);
 			movies = movieService.getAll();			
 			}

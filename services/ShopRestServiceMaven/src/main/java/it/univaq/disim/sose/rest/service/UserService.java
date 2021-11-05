@@ -6,5 +6,5 @@ import it.univaq.disim.sose.rest.model.PurchasedMovie;
 
 public interface UserService {
 	
-	public List<PurchasedMovie> getUserLibrary();
+	public List<PurchasedMovie> getUserLibrary(String token);
 }

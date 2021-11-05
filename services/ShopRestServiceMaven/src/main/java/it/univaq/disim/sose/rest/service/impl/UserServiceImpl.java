@@ -21,10 +21,16 @@ public class UserServiceImpl implements UserService{
 
 	
 	
-	public List<PurchasedMovie> getUserLibrary(){	
+	public List<PurchasedMovie> getUserLibrary(String token){	
 		//WebClient client = WebClient.create( EndPointApi.USER_SERVICE_GET_LIBRARY);
+		
+		
 		WebClient client = WebClient.create( EndPointApi.USER_SERVICE_GET_LIBRARY);
+		client.accept(MediaType.APPLICATION_JSON);
+		client.header("Authorization", token);
+		
 		Response response = client.accept(MediaType.APPLICATION_JSON).get();
+		
 		String value = response.readEntity(String.class);
 		System.out.println("getUserLibrary-----------response"+value);
 		
