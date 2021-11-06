@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns1="http://soap.controller.actorservice.uniflix.it/" name="ActorSoapApi" targetNamespace="http://soap.controller.actorservice.uniflix.it/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://soap.controller.actorservice.uniflix.it/" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://soap.controller.actorservice.uniflix.it/" version="1.0">
+  <xs:element name="ActorCast" type="tns:actorCast"/>
+  <xs:element name="ActorDetail" type="tns:actorDetail"/>
+  <xs:element name="getActor" type="tns:getActor"/>
+  <xs:element name="getActorResponse" type="tns:getActorResponse"/>
+  <xs:element name="getMovieCast" type="tns:getMovieCast"/>
+  <xs:complexType name="getActor">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getActorResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:actorDetail"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actorDetail">
+    <xs:sequence>
+      <xs:element name="actorId" type="xs:long"/>
+      <xs:element minOccurs="0" name="biography" type="xs:string"/>
+      <xs:element minOccurs="0" name="birthday" type="xs:string"/>
+      <xs:element minOccurs="0" name="birthplace" type="xs:string"/>
+      <xs:element minOccurs="0" name="character" type="xs:string"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element minOccurs="0" name="profilePath" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="getMovieCast">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sendCastWithReturnResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="cast" nillable="true" type="tns:actorCast"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actorCast">
+    <xs:sequence>
+      <xs:element name="actorId" type="xs:long"/>
+      <xs:element minOccurs="0" name="character" type="xs:string"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element minOccurs="0" name="profilePath" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="sendCastWithReturnResponse" nillable="true" type="tns:sendCastWithReturnResponse"/>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getActor">
+    <wsdl:part element="ns1:getActor" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getActorResponse">
+    <wsdl:part element="ns1:getActorResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMovieCast">
+    <wsdl:part element="ns1:getMovieCast" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getMovieCastResponse">
+    <wsdl:part element="ns1:sendCastWithReturnResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ActorSoapApi">
+    <wsdl:operation name="getActor">
+      <wsdl:input message="ns1:getActor" name="getActor">
+    </wsdl:input>
+      <wsdl:output message="ns1:getActorResponse" name="getActorResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMovieCast">
+      <wsdl:input message="ns1:getMovieCast" name="getMovieCast">
+    </wsdl:input>
+      <wsdl:output message="ns1:getMovieCastResponse" name="getMovieCastResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

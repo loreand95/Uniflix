@@ -29,14 +29,12 @@ public class ActorRepoImpl implements ActorRepo {
 
 	public List<ActorCast> getMovieCast(long movieId) {
 		Credit credit = castColl.find(eq("movieId", movieId)).first();
-		System.out.println(credit);
 		
 		return credit.getCast();
 	}
 
 	public ActorDetail getActor(long actorId) {
 		ActorDetail actor = actorColl.find(eq("actorId", actorId)).first();
-		System.out.println(actor);
 		
 		return actor;
 	}
