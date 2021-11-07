@@ -12,22 +12,40 @@ import javax.xml.ws.ResponseWrapper;
 
 import it.uniflix.actorservice.model.ActorCast;
 import it.uniflix.actorservice.model.ActorDetail;
-import it.uniflix.actorservice.model.SendCastWithReturnResponse;
+import it.uniflix.actorservice.model.GetActorResponse;
+import it.uniflix.actorservice.model.GetMovieCastResponse;
 
 @WebService
 public interface ActorSoapApi {
 	
 	@WebMethod
-	ActorDetail getActor(int actorId);
+	@ResponseWrapper(localName = "getActorResponse", 
+    className = "it.uniflix.actorservice.model.GetActorResponse")
+	ActorDetail getActor(long actorId);
 	
 	@WebMethod
-	@ResponseWrapper(localName = "sendCastWithReturnResponse", 
-		className = "it.uniflix.actorservice.model.SendCastWithReturnResponse")
-	List<ActorCast> getMovieCast(int movieId);
+	@ResponseWrapper(localName = "getActorResponse", 
+    className = "it.uniflix.actorservice.model.GetActorResponse")
+	Response<GetActorResponse> getActorAsync(long actorId);
+	
+	@WebMethod
+	@ResponseWrapper(localName = "getActorResponse", 
+    className = "it.uniflix.actorservice.model.GetActorResponse")
+	Future<?> getActorAsync(long actorId, AsyncHandler<GetActorResponse> asyncHandler);
+	
+	
+	@WebMethod
+	@ResponseWrapper(localName = "getMovieCastResponse", 
+		className = "it.uniflix.actorservice.model.GetMovieCastResponse")
+	List<ActorCast> getMovieCast(long movieId);
+	
+	@WebMethod
+	@ResponseWrapper(localName = "getMovieCastResponse", 
+		className = "it.uniflix.actorservice.model.GetMovieCastResponse")
+	Response<GetMovieCastResponse> getMovieCastAsync(long movieId);
 
-	
 	@WebMethod
-	@ResponseWrapper(localName = "sendCastWithReturnResponse", 
-		className = "it.uniflix.actorservice.model.SendCastWithReturnResponse")
-	Future<?> getMovieCastAsync(int movieId, AsyncHandler<SendCastWithReturnResponse> asyncHandler);
+	@ResponseWrapper(localName = "getMovieCastResponse", 
+		className = "it.uniflix.actorservice.model.GetMovieCastResponse")
+	Future<?> getMovieCastAsync(long movieId, AsyncHandler<GetMovieCastResponse> asyncHandler);
 }

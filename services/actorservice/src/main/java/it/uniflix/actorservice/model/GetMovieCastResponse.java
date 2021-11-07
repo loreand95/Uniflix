@@ -2,7 +2,7 @@ package it.uniflix.actorservice.model;
 
 import java.util.List;
 
-public class SendCastWithReturnResponse {
+public class GetMovieCastResponse {
 
 	private List<ActorCast> cast;
 

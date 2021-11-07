@@ -1,6 +1,6 @@
 package it.uniflix.actorservice.model;
 
-public class SendActorWithReturnResponse {
+public class GetActorResponse {
 
 	private ActorDetail actorDetail;
 

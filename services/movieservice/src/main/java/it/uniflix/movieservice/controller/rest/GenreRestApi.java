@@ -33,7 +33,7 @@ public interface GenreRestApi {
 			})
 	@GET
 	@Path("{id}/movies")
-	public List<Movie> getMoviesByGenre(@PathParam(value = "id") int id);
+	public List<Movie> getMoviesByGenre(@PathParam(value = "id") long id);
 	
 	@Operation(
 			description = "Retrieve all genres",

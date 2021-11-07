@@ -15,7 +15,7 @@ public class MovieServiceImpl implements MovieService{
 		movieRepo = new MovieRepoImpl();
 	}
 
-	public Movie getMovieById(String id) {
+	public Movie getMovieById(long id) {
 		return movieRepo.getMovie(id);
 	}
 
@@ -23,7 +23,7 @@ public class MovieServiceImpl implements MovieService{
 		return movieRepo.getPopularMovies();
 	}
 
-	public List<Movie> getMoviesByGenre(int genreId) {
+	public List<Movie> getMoviesByGenre(long genreId) {
 		return movieRepo.getMoviesByGenre(genreId);
 	}
 
