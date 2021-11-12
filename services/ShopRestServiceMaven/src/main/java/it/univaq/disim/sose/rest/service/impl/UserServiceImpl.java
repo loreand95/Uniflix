@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService{
 		String value = response.readEntity(String.class);
 		System.out.println("getUserLibrary-----------response"+value);
 		
-		/*
+		
 		JSONArray moviesJson = new JSONArray(value);
 		List <PurchasedMovie> moviesPojo = new ArrayList<PurchasedMovie>();
         ObjectMapper mapper = new ObjectMapper();
@@ -46,9 +46,8 @@ public class UserServiceImpl implements UserService{
             moviesPojo.stream().forEach(x -> System.out.println(x));
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
-		//return moviesPojo;
-		return null;
+        }
+		return moviesPojo;
 				};
 				
 				

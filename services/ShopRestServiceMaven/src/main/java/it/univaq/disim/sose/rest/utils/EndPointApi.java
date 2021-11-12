@@ -10,4 +10,8 @@ public static final String SHOP_SERVICE = "http://localhost:8080/ShopService/res
 public static final String USER_SERVICE_GET_LIBRARY = "http://localhost:8080/userservice/rest/library";
 
 
+public static final String PAY_SERVICE_BUY = "http://localhost:8080/payservice/rest/payments/pay";
+
+
+
 }

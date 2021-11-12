@@ -59,6 +59,20 @@ public interface ShopRestControllerApi {
 		           }
 			)
 			@GET
-		    @Path("{id}")
+		    @Path("/movie/{id}")
 		    public Movie_old getMovie(@PathParam(value = "id") String id);
+			
+			@Operation(
+				       description = "The description of the getTodo operation goes here!",
+				       responses = {
+				          @ApiResponse(
+				             description = "The description of the Response goes here!", 
+				             content = @Content(mediaType = MediaType.APPLICATION_JSON, 
+				                                schema = @Schema(implementation = Movie_old.class)))
+				           }
+					)
+					@POST
+				    @Path("/buy/{id}")
+				    public String buyMovie(@PathParam(value = "id") String id);
+
 }

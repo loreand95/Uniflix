@@ -1,3 +1,4 @@
+/*
 package it.univaq.disim.sose.rest.model;
 
 import java.util.ArrayList;
@@ -14,3 +15,4 @@ public class TodoDAO {
 		);
 	}
 }
+*/

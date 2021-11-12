@@ -1,3 +1,4 @@
+/*
 package it.univaq.disim.sose.rest.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -56,3 +57,4 @@ public class Todo {
 		return this.id == objClass.getId() ? true : false;
 	}
 }
+*/

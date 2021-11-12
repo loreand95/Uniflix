@@ -46,7 +46,7 @@ public class SecurityFilter implements Filter{
 		}else {
 			
 			if(httpRequest.getRequestURI().contains("/buy")) {
-				System.out.println("-----------------------ERRORE dentro IF");
+				System.out.println("----------------------- FILTER ERRORE SC_UNAUTHORIZED IF");
 			((HttpServletResponse) resp).sendError(HttpServletResponse.SC_UNAUTHORIZED, "The token is not valid.");
 			return;
 			}

@@ -1,5 +1,3 @@
-
-
 package it.univaq.disim.sose.rest.controller.impl;
 
 import java.util.ArrayList;
@@ -8,44 +6,60 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Context;
 
-import org.json.JSONArray;
-
 import it.univaq.disim.sose.rest.controller.ShopRestControllerApi;
-import it.univaq.disim.sose.rest.model.Movie;
 import it.univaq.disim.sose.rest.model.Movie_old;
 import it.univaq.disim.sose.rest.model.PurchasedMovie;
+import it.univaq.disim.sose.rest.service.PaymentService;
+import it.univaq.disim.sose.rest.service.UserService;
 import it.univaq.disim.sose.rest.service.impl.MovieServiceImpl;
+import it.univaq.disim.sose.rest.service.impl.PaymentServiceImpl;
 import it.univaq.disim.sose.rest.service.impl.UserServiceImpl;
 
 public class ShopRestControllerApiImpl implements ShopRestControllerApi{
-	
+
 	@Context
 	HttpServletRequest httpServletRequest;
-	
+
 	@Override
 	public List<PurchasedMovie> getAllMovies() {
-		
+
 		String authTokenHeader = httpServletRequest.getHeader("Authorization");
-		
+		System.out.println("TOKEN--------"+authTokenHeader);
 		List <PurchasedMovie> movies = new ArrayList<>();
 		MovieServiceImpl movieService = new MovieServiceImpl();
 		String userId = (String) httpServletRequest.getAttribute("userId");
-		String auth = httpServletRequest.getAuthType();
 		System.out.println("USERID--------"+userId);
-		System.out.println("AUTH--------"+auth);
 		if(userId != null) {
 			List <PurchasedMovie> library = new ArrayList<>();
 			UserServiceImpl userService = new UserServiceImpl();
 			library = userService.getUserLibrary(authTokenHeader);
-			System.out.println("LIBRARY --------"+userId);
 			movies = movieService.getAll();			
+			for(int i=0; i< library.size(); i++) {
+				for(int j=0; j< movies.size(); j++) {
+					if(library.get(i).getMovieId() == movies.get(j).getMovieId()) {
+						movies.get(j).setPurchaseDate(library.get(i).getPurchaseDate());
+						System.out.println("COMPRATO --------"+library.get(i).getTitle());
+					}
+				}
 			}
+		}
 		else {
-			System.out.println("ELSE --------"+userId);
+			movies = movieService.getAll();
+			System.out.println("ELSE SENZA USER --------"+userId);
 		}
 		return movies;
 	}
 
+	@Override
+	public String buyMovie(String id) {
+		String authTokenHeader = httpServletRequest.getHeader("Authorization");
+		System.out.println("TOKEN--------"+authTokenHeader);
+		String userId = (String) httpServletRequest.getAttribute("userId");
+		PaymentServiceImpl paymentService = new PaymentServiceImpl();
+		String result = paymentService.buyMovie(authTokenHeader,userId);
+		return result;
+	}
+	
 	@Override
 	public Movie_old getMovie(String id) {
 		// TODO Auto-generated method stub
