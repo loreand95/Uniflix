@@ -23,6 +23,12 @@ public interface UserController {
 	@Consumes(MediaType.APPLICATION_JSON)
 	Response signUp(User user);
 	
+	@POST
+	@Path("/isauth")
+	@Produces({MediaType.APPLICATION_JSON})
+	@Consumes(MediaType.APPLICATION_JSON)
+	Response isAuth();
+	
 	@GET
 	@Path("/library")
 	@Produces({MediaType.APPLICATION_JSON})

@@ -2,8 +2,6 @@ package it.uniflix.movieservice.repository.impl;
 
 import com.mongodb.client.MongoCollection;
 
-import org.bson.types.ObjectId;
-
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Projections.*;
 
@@ -22,9 +20,9 @@ public class MovieRepoImpl implements MovieRepo {
 		moviesColl = MongoConnection.getDatabase().getCollection("Movies", Movie.class);
 	}
 	
-	public Movie getMovie(String id) {
+	public Movie getMovie(long id) {
 				
-		Movie movie = moviesColl.find(eq("_id", new ObjectId(id))).first();
+		Movie movie = moviesColl.find(eq("movieId",id)).first();
 		
 		if (movie == null) {
 		    return null;
@@ -44,7 +42,7 @@ public class MovieRepoImpl implements MovieRepo {
 		}
 	}
 
-	public List<Movie> getMoviesByGenre(int genreId) {
+	public List<Movie> getMoviesByGenre(long genreId) {
 		List<Movie> movies = moviesColl.find(elemMatch("genres", eq("genreId", genreId))).into(new ArrayList<Movie>());
 		
 		if (movies == null) {

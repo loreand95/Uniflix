@@ -6,9 +6,9 @@ import it.uniflix.movieservice.model.Movie;
 
 public interface MovieRepo {
 
-	Movie getMovie(String id);
+	Movie getMovie(long id);
 	
 	List<Movie> getPopularMovies();
 	
-	List<Movie> getMoviesByGenre(int genreId);
+	List<Movie> getMoviesByGenre(long genreId);
 }

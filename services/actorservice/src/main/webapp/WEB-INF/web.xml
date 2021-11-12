@@ -6,12 +6,12 @@
 	<display-name>actorservice</display-name>
 
 	<servlet>
-		<servlet-name>MainCXFNonSpringServlet</servlet-name>
-		<servlet-class>it.uniflix.actorservice.controller.MainCXFNonSpringServlet</servlet-class>
+		<servlet-name>SimpleCXFNonSpringServlet</servlet-name>
+		<servlet-class>it.uniflix.actorservice.controller.SimpleCXFNonSpringServlet</servlet-class>
 		<async-supported>true</async-supported>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>MainCXFNonSpringServlet</servlet-name>
+		<servlet-name>SimpleCXFNonSpringServlet</servlet-name>
 		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
 

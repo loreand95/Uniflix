@@ -51,7 +51,7 @@ public interface MovieRestApi {
 			)
 	@GET
 	@Path("{id}")
-	public Movie getMovie(@PathParam(value = "id") String id);
+	public Movie getMovie(@PathParam(value = "id") long id);
 	
 
 }

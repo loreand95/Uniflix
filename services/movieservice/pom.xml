@@ -35,12 +35,18 @@
 		    <artifactId>cxf-rt-rs-service-description</artifactId>
 		    <version>${cxf.version}</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>${javax.servlet-api}</version>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>jaxws-rt</artifactId>
+            <version>2.3.3</version>
+        </dependency>
 		
 		<!-- Open Api and Swagger -->
 		<!-- note: a OpenApiFeature must be configured in the CXFNonSpringJaxrsServlet  -->
@@ -72,14 +78,11 @@
 			<artifactId>mongo-java-driver</artifactId>
 			<version>3.12.10</version>
 		</dependency>
+		
  	</dependencies>
 
 	<build>
 		<plugins>
-			<plugin>
-			    <artifactId>maven-war-plugin</artifactId>
-			    <version>3.2.2</version>
-			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -89,6 +92,32 @@
 					<target>${maven.compiler.target}</target>
 					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
+			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-codegen-plugin</artifactId>
+				<version>${cxf.version}</version>
+				<executions>
+					<execution>
+						<id>generate-sources</id>
+						<phase>generate-sources</phase>
+						<configuration>
+							<sourceRoot>${project.build.directory}/generated-sources/cxf</sourceRoot>
+							<wsdlOptions>
+								<wsdlOption>
+									<wsdl>${basedir}/src/main/resources/actorservice.wsdl</wsdl>
+									<bindingFiles>
+										<bindingFile>${basedir}/src/main/resources/async_binding.xml</bindingFile>
+									</bindingFiles>
+								</wsdlOption>
+							</wsdlOptions>
+						</configuration>
+						<goals>
+							<goal>wsdl2java</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 

@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://impl.soap.controller.actorservice.uniflix.it/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://soap.controller.actorservice.uniflix.it/" name="ActorSoapApiImplService" targetNamespace="http://impl.soap.controller.actorservice.uniflix.it/">
+  <wsdl:import location="http://localhost:8080/actorservice/actor?wsdl=ActorSoapApi.wsdl" namespace="http://soap.controller.actorservice.uniflix.it/">
+    </wsdl:import>
+  <wsdl:binding name="ActorSoapApiImplServiceSoapBinding" type="ns1:ActorSoapApi">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getActor">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getActor">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getActorResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMovieCast">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getMovieCast">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getMovieCastResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ActorSoapApiImplService">
+    <wsdl:port binding="tns:ActorSoapApiImplServiceSoapBinding" name="ActorSoapApiImplPort">
+      <soap:address location="http://localhost:8080/actorservice/actor"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

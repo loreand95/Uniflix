@@ -8,7 +8,8 @@
       <param-name>jaxrs.serviceClasses</param-name>
       <param-value>
       	it.uniflix.movieservice.controller.rest.impl.MovieRestApiImpl,
-      	it.uniflix.movieservice.controller.rest.impl.GenreRestApiImpl
+      	it.uniflix.movieservice.controller.rest.impl.GenreRestApiImpl,
+      	it.uniflix.movieservice.controller.rest.impl.ActorRestApiImpl,
       </param-value>
     </init-param>
     <init-param>

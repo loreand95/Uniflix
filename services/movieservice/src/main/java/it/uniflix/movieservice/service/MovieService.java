@@ -5,10 +5,10 @@ import java.util.List;
 import it.uniflix.movieservice.model.Movie;
 
 public interface MovieService {
-	Movie getMovieById(String id);
+	Movie getMovieById(long id);
 	
 	List<Movie> getPopularMovies();
 	
-	List<Movie> getMoviesByGenre(int genreId);
+	List<Movie> getMoviesByGenre(long genreId);
 
 }

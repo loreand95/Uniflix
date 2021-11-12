@@ -9,6 +9,8 @@ import org.bson.types.ObjectId;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import it.uniflix.actorservice.controller.soap.ActorCast;
+
 @XmlRootElement(name="Movies")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Movie {
@@ -28,13 +30,13 @@ public class Movie {
 	private String overview;
 	private String imdbID;
 	private String originalLanguage;
-	private List<ProductionCompany> productionCompanies;
 	private long revenue;
 	private int runtime;
 	private Double voteAverage;
 	private int voteCount;
 	private String status;
 	private long movieId;
+	private List<ActorCast> cast;
 	
 	public Movie() {}
 
@@ -150,14 +152,6 @@ public class Movie {
 		this.originalLanguage = originalLanguage;
 	}
 
-	public List<ProductionCompany> getProductionCompanies() {
-		return productionCompanies;
-	}
-
-	public void setProductionCompanies(List<ProductionCompany> productionCompanies) {
-		this.productionCompanies = productionCompanies;
-	}
-
 	public long getRevenue() {
 		return revenue;
 	}
@@ -205,6 +199,14 @@ public class Movie {
 	public void setMovieId(long movieId) {
 		this.movieId = movieId;
 	}
+	
+	public List<ActorCast> getCast() {
+		return cast;
+	}
+
+	public void setCast(List<ActorCast> cast) {
+		this.cast = cast;
+	}
 
 	@Override
 	public int hashCode() {
@@ -237,7 +239,7 @@ public class Movie {
 				+ popularity + ", backdropPath=" + backdropPath + ", posterPath=" + posterPath + ", releaseDate="
 				+ releaseDate + ", adult=" + adult + ", budget=" + budget + ", genres=" + genres + ", homepage="
 				+ homepage + ", overview=" + overview + ", imdbID=" + imdbID + ", originalLanguage=" + originalLanguage
-				+ ", productionCompanies=" + productionCompanies + ", revenue=" + revenue + ", runtime=" + runtime
+				+ ", revenue=" + revenue + ", runtime=" + runtime
 				+ ", movieId=" + movieId + ", voteAverage=" + voteAverage + ", voteCount=" + voteCount + ", status="
 				+ status + "]";
 	}

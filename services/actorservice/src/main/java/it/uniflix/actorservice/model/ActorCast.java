@@ -2,10 +2,8 @@ package it.uniflix.actorservice.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @XmlRootElement(name="ActorCast")
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class ActorCast {
 	private long actorId;
 	private String name;

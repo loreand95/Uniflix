@@ -18,7 +18,7 @@ public class GenreRestApiImpl implements GenreRestApi {
 	}
 
 
-	public List<Movie> getMoviesByGenre(int id) {
+	public List<Movie> getMoviesByGenre(long id) {
 		MovieService movieService = new MovieServiceImpl();
 		return movieService.getMoviesByGenre(id);
 	}

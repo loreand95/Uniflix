@@ -5,16 +5,16 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Genre {
 	
-	private int genreId;
+	private long genreId;
 	private String name;
 	
 	public Genre() {}
 
-	public int getGenreId() {
+	public long getGenreId() {
 		return genreId;
 	}
 
-	public void setGenreId(int genreId) {
+	public void setGenreId(long genreId) {
 		this.genreId = genreId;
 	}
 

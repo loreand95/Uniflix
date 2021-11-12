@@ -1,4 +1,4 @@
-package it.uniflix.actorervice.repository;
+package it.uniflix.actorservice.repository;
 
 import java.util.List;
 
