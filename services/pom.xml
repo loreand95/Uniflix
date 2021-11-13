@@ -11,5 +11,7 @@
 		<module>movieservice</module>
 		<module>userservice</module>
 		<module>ShopRestServiceMaven</module>
+		<module>reviewservice</module>
+		<module>previewservice</module>
 	</modules>
 </project>
