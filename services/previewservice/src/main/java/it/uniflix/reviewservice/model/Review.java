@@ -3,9 +3,6 @@ package it.uniflix.reviewservice.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.bson.types.ObjectId;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
@@ -15,19 +12,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Review {
 	
-	@JsonIgnore
-	private ObjectId _id;
 	private String author;
 	private String content;
-	private String id;
-	private String movieId;
+	private long movieId;
 	private String url;
 
 
 	public Review() {
 		super();
 	}
-
 
 	public String getAuthor() {
 		return author;
@@ -41,16 +34,11 @@ public class Review {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public String getMovieId() {
+
+	public long getMovieId() {
 		return movieId;
 	}
-	public void setMovieId(String movieId) {
+	public void setMovieId(long movieId) {
 		this.movieId = movieId;
 	}
 	public String getUrl() {
@@ -60,12 +48,9 @@ public class Review {
 		this.url = url;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Review [_id=" + _id + ", author=" + author + ", content=" + content + ", id=" + id + ", movieId="
-				+ movieId + ", url=" + url + "]";
+		return "Review [author=" + author + ", content=" + content + ", movieId=" + movieId + ", url=" + url + "]";
 	}
-
 
 }
