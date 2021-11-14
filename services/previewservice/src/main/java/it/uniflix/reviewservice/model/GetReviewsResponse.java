@@ -2,11 +2,7 @@ package it.uniflix.reviewservice.model;
 
 import java.util.List;
 
-
 public class GetReviewsResponse {
-
-	public GetReviewsResponse() {
-	}
 
 	private List <Review> reviews;
 
@@ -16,7 +12,5 @@ public class GetReviewsResponse {
 
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
-	}
-
-	
+	}	
 }

@@ -16,7 +16,7 @@ import it.uniflix.reviewservice.service.impl.ReviewServiceImpl;
 public class ReviewSoapApiImpl implements ReviewSoapApi{
 
 	@Override
-	//@UseAsyncMethod
+	@UseAsyncMethod
 	public List<Review> getReviews(long movieId) {	
 		System.out.println("Controller SOAP getReviews movieId:"+ movieId);
 		ReviewService reviewService = new ReviewServiceImpl();
