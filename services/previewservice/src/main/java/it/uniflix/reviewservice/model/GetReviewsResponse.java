@@ -3,9 +3,9 @@ package it.uniflix.reviewservice.model;
 import java.util.List;
 
 
-public class GetReviews {
+public class GetReviewsResponse {
 
-	public GetReviews() {
+	public GetReviewsResponse() {
 	}
 
 	private List <Review> reviews;
