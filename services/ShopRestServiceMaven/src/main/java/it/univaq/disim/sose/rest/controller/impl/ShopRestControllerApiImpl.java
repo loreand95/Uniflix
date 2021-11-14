@@ -10,9 +10,11 @@ import it.univaq.disim.sose.rest.controller.ShopRestControllerApi;
 import it.univaq.disim.sose.rest.model.Movie_old;
 import it.univaq.disim.sose.rest.model.PurchasedMovie;
 import it.univaq.disim.sose.rest.service.PaymentService;
+import it.univaq.disim.sose.rest.service.BusinessService;
 import it.univaq.disim.sose.rest.service.UserService;
 import it.univaq.disim.sose.rest.service.impl.MovieServiceImpl;
 import it.univaq.disim.sose.rest.service.impl.PaymentServiceImpl;
+import it.univaq.disim.sose.rest.service.impl.BusinessServiceImpl;
 import it.univaq.disim.sose.rest.service.impl.UserServiceImpl;
 
 public class ShopRestControllerApiImpl implements ShopRestControllerApi{
@@ -27,33 +29,13 @@ public class ShopRestControllerApiImpl implements ShopRestControllerApi{
 		System.out.println("TOKEN--------"+authTokenHeader);
 		List <PurchasedMovie> movies = new ArrayList<>();
 		MovieServiceImpl movieService = new MovieServiceImpl();
+		BusinessService shopService = new BusinessServiceImpl();
 		String userId = (String) httpServletRequest.getAttribute("userId");
 		System.out.println("USERID--------"+userId);
-		if(userId != null) {
-			List <PurchasedMovie> library = new ArrayList<>();
-			UserServiceImpl userService = new UserServiceImpl();
-			library = userService.getUserLibrary(authTokenHeader);
-			movies = movieService.getAll();			
-			for(int i=0; i< library.size(); i++) {
-				for(int j=0; j< movies.size(); j++) {
-					if(library.get(i).getMovieId() == movies.get(j).getMovieId()) {
-						movies.get(j).setPurchaseDate(library.get(i).getPurchaseDate());
-						System.out.println("COMPRATO --------"+library.get(i).getTitle());
-					}
-				}
-			}
-		}
-		else {
-			movies = movieService.getAll();
-			System.out.println("ELSE SENZA USER --------"+userId);
-		}
-		for(int z=0; z< movies.size(); z++) {
-			if((z % 2) == 0) movies.get(z).setPrice(3.99);
-			else movies.get(z).setPrice(7.99);
-			System.out.println("------ PREZZO MOVIE: "+ movies.get(z).getPrice());
-		}
+		movies = shopService.shopMovieTicketing(authTokenHeader, movieService, userId);
 		return movies;
 	}
+
 
 	@Override
 	public String buyMovie(String id) {
