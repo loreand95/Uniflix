@@ -47,6 +47,11 @@ public class ShopRestControllerApiImpl implements ShopRestControllerApi{
 			movies = movieService.getAll();
 			System.out.println("ELSE SENZA USER --------"+userId);
 		}
+		for(int z=0; z< movies.size(); z++) {
+			if((z % 2) == 0) movies.get(z).setPrice(3.99);
+			else movies.get(z).setPrice(7.99);
+			System.out.println("------ PREZZO MOVIE: "+ movies.get(z).getPrice());
+		}
 		return movies;
 	}
 
