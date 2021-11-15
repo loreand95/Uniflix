@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://impl.soap.controller.reviewservice.uniflix.it/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://soap.controller.reviewservice.uniflix.it/" name="ReviewSoapApiImplService" targetNamespace="http://impl.soap.controller.reviewservice.uniflix.it/">
+  <wsdl:import location="http://localhost:8080/reviewservice/review?wsdl=ReviewSoapApi.wsdl" namespace="http://soap.controller.reviewservice.uniflix.it/">
+    </wsdl:import>
+  <wsdl:binding name="ReviewSoapApiImplServiceSoapBinding" type="ns1:ReviewSoapApi">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getReviews">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getReviews">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getReviewsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ReviewSoapApiImplService">
+    <wsdl:port binding="tns:ReviewSoapApiImplServiceSoapBinding" name="ReviewSoapApiImplPort">
+      <soap:address location="http://localhost:8080/reviewservice/review"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

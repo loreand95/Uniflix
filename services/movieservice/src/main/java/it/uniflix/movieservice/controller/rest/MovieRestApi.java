@@ -40,10 +40,10 @@ public interface MovieRestApi {
 	public List<Movie> getMovies();
 
 	@Operation(
-			description = "Retrieve a movie given its id",
+			description = "Retrieve a movie, with details, given its id",
 			responses = {
 					@ApiResponse(
-							description = "A movie",
+							description = "A movie detailed view",
 							content = @Content(
 									mediaType = MediaType.APPLICATION_JSON,
 									schema = @Schema(implementation = Boolean.class)))

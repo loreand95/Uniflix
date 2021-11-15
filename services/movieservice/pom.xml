@@ -111,6 +111,12 @@
 										<bindingFile>${basedir}/src/main/resources/async_binding.xml</bindingFile>
 									</bindingFiles>
 								</wsdlOption>
+								<wsdlOption>
+									<wsdl>${basedir}/src/main/resources/reviewservice.wsdl</wsdl>
+									<bindingFiles>
+										<bindingFile>${basedir}/src/main/resources/async_binding.xml</bindingFile>
+									</bindingFiles>
+								</wsdlOption>
 							</wsdlOptions>
 						</configuration>
 						<goals>

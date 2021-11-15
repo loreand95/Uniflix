@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import it.uniflix.actorservice.controller.soap.ActorCast;
+import it.uniflix.reviewservice.controller.soap.Review;
 
 @XmlRootElement(name="Movies")
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -37,6 +38,7 @@ public class Movie {
 	private String status;
 	private long movieId;
 	private List<ActorCast> cast;
+	private List<Review> reviews;
 	
 	public Movie() {}
 
@@ -206,6 +208,14 @@ public class Movie {
 
 	public void setCast(List<ActorCast> cast) {
 		this.cast = cast;
+	}
+
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
 	}
 
 	@Override
