@@ -10,7 +10,7 @@
 		<module>payservice</module>
 		<module>movieservice</module>
 		<module>userservice</module>
-		<module>ShopRestServiceMaven</module>
+		<module>shopservice</module>
 		<module>reviewservice</module>
 		<module>previewservice</module>
 	</modules>
