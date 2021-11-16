@@ -1,4 +1,4 @@
-package it.uniflix.userservice.service.impl.repository.impl.mongo;
+package it.uniflix.userservice.repository.impl.mongo;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,7 +10,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.bson.Document;
-import org.bson.types.ObjectId;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.BasicDBObject;
@@ -20,7 +19,7 @@ import com.mongodb.client.MongoDatabase;
 import it.uniflix.userservice.model.Movie;
 import it.uniflix.userservice.model.Order;
 import it.uniflix.userservice.model.User;
-import it.uniflix.userservice.service.impl.repository.UserRepository;
+import it.uniflix.userservice.repository.UserRepository;
 import it.uniflix.userservice.utils.PasswordUtils;
 
 public class UserRepositoryMongo implements UserRepository{
@@ -28,7 +27,7 @@ public class UserRepositoryMongo implements UserRepository{
 	@Override
 	public User signIn(User user) {
 
-		MongoDatabase database = MongoConnection.getDatabase();
+		MongoDatabase database = MongoConnection.getInstance().getDatabase();
 		MongoCollection<Document> collection = database.getCollection("Users");
 
 		//Query
@@ -62,7 +61,7 @@ public class UserRepositoryMongo implements UserRepository{
 
 		user.setId(UUID.randomUUID().toString());
 		
-		MongoDatabase database = MongoConnection.getDatabase();
+		MongoDatabase database = MongoConnection.getInstance().getDatabase();
 		MongoCollection<Document> collection = database.getCollection("Users");
 
 		Document newUser = new Document();
@@ -85,7 +84,7 @@ public class UserRepositoryMongo implements UserRepository{
 		Set<Movie> movies = new HashSet<Movie>();
 		
 		//Connection
-		MongoDatabase database = MongoConnection.getDatabase();
+		MongoDatabase database = MongoConnection.getInstance().getDatabase();
 		MongoCollection<Document> collection = database.getCollection("Users");
 
 		//Query
@@ -123,7 +122,7 @@ public class UserRepositoryMongo implements UserRepository{
 	@Override
 	public Movie getMovie(long movieId) {
 
-		MongoDatabase database = MongoConnection.getDatabase();
+		MongoDatabase database = MongoConnection.getInstance().getDatabase();
 		MongoCollection<Document> collection = database.getCollection("Movies");
 
 		//Query

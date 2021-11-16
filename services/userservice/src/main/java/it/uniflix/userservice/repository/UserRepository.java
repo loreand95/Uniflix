@@ -1,4 +1,4 @@
-package it.uniflix.userservice.service.impl.repository;
+package it.uniflix.userservice.repository;
 
 import java.util.Set;
 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const serviceConfig = {
-  url: 'http://localhost:3005/movieservice/rest',
+  url: 'http://35.223.107.128:3005/movieservice/rest',
   timeout: 6000,
   configHeaders: {
     'Accept': 'application/json',
