@@ -23,7 +23,7 @@ export default function FilmCard({film}) {
               color: 'white'
             }}
             component={Link}
-            to={'/films/' + film.id}
+            to={'/films/' + film.movieId}
       >
         <PlayCircleOutlineRoundedIcon />
       </IconButton>

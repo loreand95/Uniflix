@@ -12,7 +12,9 @@ import ActorPage from '../pages/ActorPage';
 export default function Routes(){
     return(
         <Router>
+            <Route exact path="/home" children={({match})=><HomePage match={match}/>}/>
             <Switch>
+                <Route path="/home" children={null}/>
                 <Route exact path="/">
                     <Redirect to="/home"/>
                 </Route>
@@ -22,7 +24,6 @@ export default function Routes(){
                 <ProtectedRoute path="/account" component={AccountPage} />
                 <ProtectedRoute path="/library" component={LibraryPage} />
                 <Route path="/films/:id" component={FilmPage} />
-                <Route path="/home" component={HomePage} />
                 <Route path="*">
                     <NotFoundPage />
                 </Route>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const serviceConfig = {
-  url: 'http://35.223.107.128:3005/movieservice/rest',
+  url: process.env.REACT_APP_URI_FILM_SERVICE,
   timeout: 6000,
   configHeaders: {
     'Accept': 'application/json',
@@ -17,7 +17,7 @@ const service = axios.create({
 
 export async function getActorFetch(actorId){
   return service
-  .get('/actors/'+actorId).then(res => res.data)
+  .get('/actor/'+actorId).then(res => res.data)
   .catch((error) => {
     throw error;
   });

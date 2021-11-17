@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const userServiceConfig = {
-  url: 'http://35.223.107.128:8080/userservice/rest',
+  url: process.env.REACT_APP_URI_USER_SERVICE,
   timeout: 6000,
   configHeaders: {
     'Accept': 'application/json',
