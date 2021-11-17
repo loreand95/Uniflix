@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @XmlRootElement(name="Order")
 public class Order {
 
-	private int id;
+	private String id;
 	
 	private long movieId;
 	
@@ -24,12 +24,12 @@ public class Order {
 
 	
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
