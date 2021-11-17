@@ -25,13 +25,13 @@ export default function HomePage({ match }) {
   }, []);
 
   return (
-    <>
+    <div style={{ display: match ? "block" : "none" }}>
       {isLoading && <WelcomeLoader />}
-      <BaseLayout style={{ display: match ? "block" : "none" }}>
+      <BaseLayout>
         <Carousel film={film} />
         <CategoryCards categoryName="adventure" />
         <CategoryCards categoryName="drama" />
       </BaseLayout>
-    </>
+    </div>
   );
 }
