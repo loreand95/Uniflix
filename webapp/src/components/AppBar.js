@@ -19,7 +19,7 @@ export default function CustomAppBar({onlyLogo}) {
             style={{ fontWeight: 900 }}
             variant="h6"
             sx={{ flexGrow: 1, textDecoration: 'none', color:'white'}}
-            component={Link} to={'/'}>
+            component={Link} to={'/home'}>
             Uniflix
           </Typography>
           <>

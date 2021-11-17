@@ -36,11 +36,8 @@ public class AuthenticationFilter implements Filter{
 			try{
 				Jws<Claims> jwsc = Jwts.parser().setSigningKey(key).parseClaimsJws(token);
 				req.setAttribute("userId", jwsc.getBody().getId());
-			}catch(Exception ex) {
-				
-				ex.printStackTrace();
-				
-				((HttpServletResponse) resp).sendError(HttpServletResponse.SC_UNAUTHORIZED, "The token is not valid.");
+			}catch(Exception ex) {				
+				((HttpServletResponse) resp).setStatus(401);
 				return;
 			}
 		}

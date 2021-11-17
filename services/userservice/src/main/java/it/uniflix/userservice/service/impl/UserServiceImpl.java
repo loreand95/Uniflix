@@ -1,11 +1,12 @@
 package it.uniflix.userservice.service.impl;
 
 import java.util.Set;
+
 import it.uniflix.userservice.model.Movie;
 import it.uniflix.userservice.model.User;
+import it.uniflix.userservice.repository.UserRepository;
+import it.uniflix.userservice.repository.impl.mongo.UserRepositoryMongo;
 import it.uniflix.userservice.service.UserService;
-import it.uniflix.userservice.service.impl.repository.UserRepository;
-import it.uniflix.userservice.service.impl.repository.impl.mongo.UserRepositoryMongo;
 import it.uniflix.userservice.utils.JWTHelpers;
 
 public class UserServiceImpl implements UserService {

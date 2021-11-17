@@ -29,10 +29,10 @@ public class AuthorizationFilter implements Filter{
 		String userId = (String) httpRequest.getAttribute("userId");
 
 		if (userId == null ) {
-			((HttpServletResponse) resp).sendError(HttpServletResponse.SC_UNAUTHORIZED, "The token is not valid.");
+			((HttpServletResponse) resp).setStatus(401);
 			return;
 		}else {
-			//Authorization constraints
+			//Optional Authorization Constraints (403)
 		}
 
 		chain.doFilter(req, resp);	//Next

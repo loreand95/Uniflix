@@ -2,7 +2,6 @@ package it.uniflix.payservice.controller.rest.filter;
 
 
 import java.io.IOException;
-import java.security.Key;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -11,14 +10,13 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.Jwts;
-import it.uniflix.payservice.utils.JWTHelpers;
+import it.uniflix.payservice.dto.AuthResponse;
+import it.uniflix.payservice.service.AuthService;
+import it.uniflix.payservice.service.impl.AuthServiceImpl;
 
 
 public class SecurityFilter implements Filter{  
-
+	
 	public void init(FilterConfig arg0) throws ServletException {}  
 
 	public void doFilter(ServletRequest req, ServletResponse resp,  
@@ -29,22 +27,15 @@ public class SecurityFilter implements Filter{
 		String authTokenHeader = httpRequest.getHeader("Authorization");
 
 		if (authTokenHeader != null && authTokenHeader.startsWith("Bearer ")) {
-			String token = authTokenHeader.substring("Bearer".length()).trim();
 
-			Key key = JWTHelpers.getInstance().getJwtKey();
+			AuthService authService = new AuthServiceImpl();
 			
-			try{
-				Jws<Claims> jwsc = Jwts.parser().setSigningKey(key).parseClaimsJws(token);
-				req.setAttribute("userId", jwsc.getBody().getId());
-			}catch(Exception ex) {
-				
-				ex.printStackTrace();
-				
-				((HttpServletResponse) resp).sendError(HttpServletResponse.SC_UNAUTHORIZED, "The token is not valid.");
-				return;
-			}
+			AuthResponse authResponse = authService.getAuth(authTokenHeader);
+			
+			req.setAttribute("userId", authResponse.getUserId());
+			
 		}else {
-			((HttpServletResponse) resp).sendError(HttpServletResponse.SC_UNAUTHORIZED, "The token is not valid.");
+			((HttpServletResponse) resp).setStatus(401);
 			return;
 		}
 

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const serviceConfig = {
-  url: 'http://localhost:3007/reviewservice/rest',
+  url: process.env.REACT_APP_URI_REVIEW_SERVICE,
   timeout: 6000,
   configHeaders: {
     'Accept': 'application/json',

@@ -23,8 +23,8 @@ public class ActorRepoImpl implements ActorRepo {
 	private MongoCollection<ActorDetail> actorColl;
 	
 	public ActorRepoImpl() {
-		castColl = MongoConnection.getDatabase().getCollection("Credits", Credit.class);
-		actorColl = MongoConnection.getDatabase().getCollection("Actors", ActorDetail.class);
+		castColl = MongoConnection.getInstance().getDatabase().getCollection("Credits", Credit.class);
+		actorColl = MongoConnection.getInstance().getDatabase().getCollection("Actors", ActorDetail.class);
 	}
 
 	public List<ActorCast> getMovieCast(long movieId) {

@@ -4,11 +4,12 @@ import Typography from '@mui/material/Typography';
 import AppBar from '../components/AppBar';
 import { useTheme } from '@mui/material/styles';
 
-function BaseLayout({children, onlyLogo}) {
+function BaseLayout({children, onlyLogo,style}) {
   const classes = useStyles();
   const theme = useTheme();
+
   return (
-    <div className={classes.container}>
+    <div className={classes.container} style={{...style}}>
         <AppBar onlyLogo={onlyLogo}/>
         <div style={{ flexGrow: 1,backgroundColor:theme.palette.background.paper}}>
             {children}
