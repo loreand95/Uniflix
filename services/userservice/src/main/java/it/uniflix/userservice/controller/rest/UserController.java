@@ -7,6 +7,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import it.uniflix.userservice.dto.AvailableFieldsReq;
 import it.uniflix.userservice.model.User;
 
 public interface UserController {
@@ -33,4 +35,10 @@ public interface UserController {
 	@Path("/library")
 	@Produces({MediaType.APPLICATION_JSON})
 	Response library();
+	
+	@POST
+	@Path("/users/available")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces({MediaType.APPLICATION_JSON})
+	Response available(AvailableFieldsReq fields);
 }

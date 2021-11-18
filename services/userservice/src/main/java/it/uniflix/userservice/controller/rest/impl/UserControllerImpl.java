@@ -6,6 +6,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import it.uniflix.userservice.controller.rest.UserController;
+import it.uniflix.userservice.dto.AvailableFieldsReq;
 import it.uniflix.userservice.model.AuthUser;
 import it.uniflix.userservice.model.Movie;
 import it.uniflix.userservice.model.User;
@@ -24,8 +25,6 @@ public class UserControllerImpl implements UserController{
 	public UserControllerImpl() {
 		userService = new UserServiceImpl();
 	}
-
-
 
 	@Override
 	public Response signUp(User user) {
@@ -65,8 +64,6 @@ public class UserControllerImpl implements UserController{
 		}
 	}
 
-
-
 	@Override
 	public Response isAuth() {
 		
@@ -82,5 +79,14 @@ public class UserControllerImpl implements UserController{
 		}
 		
 		return Response.ok(authUser, MediaType.APPLICATION_JSON).build();
+	}
+
+	@Override
+	public Response available(AvailableFieldsReq fields) {
+		// TODO Auto-generated method stub
+		
+		
+		
+		return Response.ok(userService.available(fields), MediaType.APPLICATION_JSON).build();
 	}
 }
