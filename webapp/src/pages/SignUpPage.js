@@ -25,12 +25,15 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 export default function SignUpPage() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { handleSubmit, control } = useForm();
+  const { handleSubmit, control, formState } = useForm();
 
-  const [loading, setLoading] = useState();
+  const { isSubmitting } = formState;
+
+  console.log('formState',formState)
   const [open, setOpen] = React.useState(false);
 
   const onSubmit = (data) => {
+    console.log('validated');
     const user = {
       fullname: data.firstName + " " + data.lastName,
       email: data.email,
@@ -39,11 +42,9 @@ export default function SignUpPage() {
 
     dispatch(signUpAction(user))
       .then(() => {
-        setLoading(false);
         history.push("/home");
       })
       .catch((err) => {
-        setLoading(false);
         setOpen(true);
         console.log(err);
       });
@@ -177,7 +178,7 @@ export default function SignUpPage() {
                     <TextField
                       label="Password"
                       fullWidth
-                      type="text"
+                      type="password"
                       value={value}
                       onChange={onChange}
                       error={!!error}
@@ -194,9 +195,9 @@ export default function SignUpPage() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              disabled={open}
+              disabled={isSubmitting}
             >
-              {loading ? (
+              {isSubmitting ? (
                 <CircularProgress size={20} style={{ color: "white" }} />
               ) : (
                 "Sign Up"
