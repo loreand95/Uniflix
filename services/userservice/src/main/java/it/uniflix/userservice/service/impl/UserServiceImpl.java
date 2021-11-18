@@ -2,6 +2,8 @@ package it.uniflix.userservice.service.impl;
 
 import java.util.Set;
 
+import it.uniflix.userservice.dto.AvailableFieldsReq;
+import it.uniflix.userservice.dto.AvailableFieldsRes;
 import it.uniflix.userservice.model.Movie;
 import it.uniflix.userservice.model.User;
 import it.uniflix.userservice.repository.UserRepository;
@@ -45,5 +47,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Set<Movie> getLibrary(String userId) {
 		return userRepository.getLibrary(userId);
+	}
+
+	@Override
+	public AvailableFieldsRes available(AvailableFieldsReq fields) {
+		return userRepository.available(fields);
 	}
 }

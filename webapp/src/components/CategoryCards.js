@@ -4,9 +4,8 @@ import Button from "@mui/material/Button";
 import FilmCard from "./FilmCard";
 import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
-import { Hidden, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { getAllFilmByCategory } from "../api/rest/shopService";
-import { Box } from "@mui/system";
 import useMediaQuery from "@mui/material/useMediaQuery";
 function CategoryCards({ categoryName }) {
   const [items, setItems] = React.useState([]);

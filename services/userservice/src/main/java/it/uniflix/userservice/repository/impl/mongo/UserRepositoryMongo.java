@@ -10,12 +10,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.FindOneAndUpdateOptions;
+import com.mongodb.client.model.ReturnDocument;
+import com.mongodb.client.model.Updates;
 
+import it.uniflix.userservice.dto.AvailableFieldsReq;
+import it.uniflix.userservice.dto.AvailableFieldsRes;
 import it.uniflix.userservice.model.Movie;
 import it.uniflix.userservice.model.Order;
 import it.uniflix.userservice.model.User;
@@ -123,14 +130,26 @@ public class UserRepositoryMongo implements UserRepository{
 	public Movie getMovie(long movieId) {
 
 		MongoDatabase database = MongoConnection.getInstance().getDatabase();
-		MongoCollection<Document> collection = database.getCollection("Movies");
+		MongoCollection<Document> collection = database.getCollection("Users");
 
 		//Query
 		BasicDBObject searchQuery = new BasicDBObject();
 		searchQuery.put("movieId", movieId);
 
 		Document document = collection.find(searchQuery).first();
+		
+		Bson filter = Filters.eq("id", "66ba3a11-dc58-4f56-9424-93384aa76962");
+		Bson update = Updates.push("library", new Document());
+		FindOneAndUpdateOptions options = new FindOneAndUpdateOptions()
+		                                    .returnDocument(ReturnDocument.AFTER);
+		Document result = collection.findOneAndUpdate(filter, update, options);
+		
+		//Document result = collection.find(filter).first();
+		
+		System.out.println(result.toJson());
 
+		
+		
 		try {
 			if(document != null) {
 				ObjectMapper mapper = new ObjectMapper();
@@ -142,5 +161,23 @@ public class UserRepositoryMongo implements UserRepository{
 		}
 
 		return null;
+	}
+
+	@Override
+	public AvailableFieldsRes available(AvailableFieldsReq fields) {
+		
+		MongoDatabase database = MongoConnection.getInstance().getDatabase();
+		MongoCollection<Document> collection = database.getCollection("Users");
+
+		BasicDBObject filter = new BasicDBObject();
+		filter.put("email", fields.getEmail());
+		
+		Document result = collection.find(filter).first();
+		
+		//DTO
+		AvailableFieldsRes res = new AvailableFieldsRes();
+		res.setEmail(result==null);
+		
+		return res;
 	}
 }
