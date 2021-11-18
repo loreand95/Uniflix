@@ -41,3 +41,12 @@ export async function getLibraryFetch(token){
     throw error;
   });
 }
+
+export async function availableFetch(fields){
+
+  return userService
+  .post('/users/available', fields).then(res => res.data)
+  .catch((error) => {
+    throw error;
+  });
+}

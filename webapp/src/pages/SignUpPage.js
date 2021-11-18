@@ -16,6 +16,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { useForm, Controller } from "react-hook-form";
+import { availableFetch } from "../api/rest/userService";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -30,11 +31,10 @@ export default function SignUpPage() {
   const [open, setOpen] = React.useState(false);
 
   const onSubmit = (data) => {
-
     const user = {
       fullname: data.firstName + " " + data.lastName,
       email: data.email,
-      password: data.password
+      password: data.password,
     };
 
     dispatch(signUpAction(user))
@@ -99,6 +99,7 @@ export default function SignUpPage() {
                       onChange={onChange}
                       error={!!error}
                       helperText={error ? error.message : null}
+                      required
                     />
                   )}
                 />
@@ -121,6 +122,7 @@ export default function SignUpPage() {
                       onChange={onChange}
                       error={!!error}
                       helperText={error ? error.message : null}
+                      required
                     />
                   )}
                 />
@@ -136,6 +138,11 @@ export default function SignUpPage() {
                       value: /\S+@\S+\.\S+/,
                       message: "Entered value does not match email format",
                     },
+                    validate: {
+                      unique: async (value) =>
+                        (await availableFetch({ email: value })).email ||
+                        "Email already exists",
+                    },
                   }}
                   render={({
                     field: { onChange, value },
@@ -150,6 +157,7 @@ export default function SignUpPage() {
                       error={!!error}
                       helperText={error ? error.message : null}
                       autoComplete="off"
+                      required
                     />
                   )}
                 />
@@ -160,7 +168,7 @@ export default function SignUpPage() {
                   control={control}
                   defaultValue=""
                   rules={{
-                    required: "Password required"
+                    required: "Password required",
                   }}
                   render={({
                     field: { onChange, value },
@@ -175,6 +183,7 @@ export default function SignUpPage() {
                       error={!!error}
                       helperText={error ? error.message : null}
                       autoComplete="off"
+                      required
                     />
                   )}
                 />
