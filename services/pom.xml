@@ -12,6 +12,5 @@
 		<module>userservice</module>
 		<module>shopservice</module>
 		<module>reviewservice</module>
-		<module>previewservice</module>
 	</modules>
 </project>

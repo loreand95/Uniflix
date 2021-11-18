@@ -5,10 +5,10 @@
     <artifactId>sose-project</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>previewservice</artifactId>
+  <artifactId>reviewservice</artifactId>
   <packaging>war</packaging>
   <name>reviewservice</name>
-  <description>service for preview data</description>
+  <description>service for review data</description>
   
   <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
