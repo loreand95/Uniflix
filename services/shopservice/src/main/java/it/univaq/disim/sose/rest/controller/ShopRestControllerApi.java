@@ -1,10 +1,6 @@
-
-
 package it.univaq.disim.sose.rest.controller;
+
 import java.util.List;
-
-
-
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -17,7 +13,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import it.univaq.disim.sose.rest.model.MovieBO;
 
-@Path("/shop")
+@Path("/movies")
 public interface ShopRestControllerApi {
 
 	@Operation( 
@@ -50,7 +46,7 @@ public interface ShopRestControllerApi {
 			}
 			)
 	@GET
-	@Path("/movie/{id}")
+	@Path("/{id}")
 	public MovieBO getMovieById(@PathParam(value = "id") String id);
 
 	@Operation(
@@ -63,7 +59,7 @@ public interface ShopRestControllerApi {
 			}
 			)
 	@POST
-	@Path("/buy/{id}")
+	@Path("/{id}/buy")
 	public String buyMovie(@PathParam(value = "id") String id);
 
 }
