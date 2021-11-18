@@ -83,12 +83,16 @@ public class MovieServiceImpl implements MovieService {
 		}
 		System.out.println("getMovieById Response:"+value );
 		
+		//ESTIMATE PRICE TODO
+		movie.setPrice(3.99);
+		
 		if(userId != null) {
 			List <MovieBO> library = new ArrayList<>();
 			library = userService.getUserLibrary(authTokenHeader);			
 			for(int i=0; i< library.size(); i++) {
 					if(library.get(i).getMovieId() == movie.getMovieId()) {
 						movie.setPurchaseDate(library.get(i).getPurchaseDate());
+						movie.setPrice(0);
 						System.out.println("COMPRATO --------"+library.get(i).getTitle());
 					}
 				}

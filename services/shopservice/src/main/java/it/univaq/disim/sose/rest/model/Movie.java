@@ -1,6 +1,7 @@
 package it.univaq.disim.sose.rest.model;
 
 import java.util.List;
+import java.util.Objects;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -8,6 +9,8 @@ import org.bson.types.ObjectId;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
 
 @XmlRootElement(name="Movies")
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -35,6 +38,24 @@ public class Movie {
 	private int voteCount;
 	private String status;
 	private long movieId;
+	private List<ActorCast> cast;
+	private List<Review> reviews;
+	
+	public List<ActorCast> getCast() {
+		return cast;
+	}
+
+	public void setCast(List<ActorCast> cast) {
+		this.cast = cast;
+	}
+
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
 
 	public Movie() {}
 
@@ -208,10 +229,9 @@ public class Movie {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
+		return Objects.hash(adult, backdropPath, budget, cast, genres, homepage, id, imdbID, movieId, originalLanguage,
+				originalTitle, overview, popularity, posterPath, productionCompanies, releaseDate, revenue, reviews,
+				runtime, status, title, voteAverage, voteCount);
 	}
 
 	@Override
@@ -223,12 +243,18 @@ public class Movie {
 		if (getClass() != obj.getClass())
 			return false;
 		Movie other = (Movie) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
+		return adult == other.adult && Objects.equals(backdropPath, other.backdropPath) && budget == other.budget
+				&& Objects.equals(cast, other.cast) && Objects.equals(genres, other.genres)
+				&& Objects.equals(homepage, other.homepage) && Objects.equals(id, other.id)
+				&& Objects.equals(imdbID, other.imdbID) && movieId == other.movieId
+				&& Objects.equals(originalLanguage, other.originalLanguage)
+				&& Objects.equals(originalTitle, other.originalTitle) && Objects.equals(overview, other.overview)
+				&& Objects.equals(popularity, other.popularity) && Objects.equals(posterPath, other.posterPath)
+				&& Objects.equals(productionCompanies, other.productionCompanies)
+				&& Objects.equals(releaseDate, other.releaseDate) && revenue == other.revenue
+				&& Objects.equals(reviews, other.reviews) && runtime == other.runtime
+				&& Objects.equals(status, other.status) && Objects.equals(title, other.title)
+				&& Objects.equals(voteAverage, other.voteAverage) && voteCount == other.voteCount;
 	}
 
 	@Override
