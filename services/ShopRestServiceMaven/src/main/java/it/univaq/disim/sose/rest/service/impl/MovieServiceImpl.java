@@ -64,7 +64,16 @@ public class MovieServiceImpl implements MovieService {
             e.printStackTrace();
         }
 		return moviesPojo;
-				};
+				}
+
+
+
+	public void getMovieById(String movieId) {
+		WebClient client = WebClient.create( EndPointApi.MOVIE_SERVICE+"/"+movieId);
+		Response response = client.accept(MediaType.APPLICATION_JSON).get();
+		String value = response.readEntity(String.class);
+		System.out.println("getMovieById Response:"+value );
+	};
 }
 
 

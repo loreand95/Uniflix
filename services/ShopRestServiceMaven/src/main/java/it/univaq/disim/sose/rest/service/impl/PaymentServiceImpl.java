@@ -24,7 +24,7 @@ public class PaymentServiceImpl implements PaymentService {
 		client.header("Content-Type", "application/json");
 		client.accept(MediaType.APPLICATION_JSON);
 		Payment payment = new Payment();
-		payment.setAmount(100);
+		payment.setAmount(10);
 		payment.setUserId(UserId);
 		Gson gson = new Gson();
 		System.out.println("-------------- JSON "+gson.toJson(payment, Payment.class));

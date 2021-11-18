@@ -10,15 +10,22 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.FindOneAndUpdateOptions;
+import com.mongodb.client.model.ReturnDocument;
+import com.mongodb.client.model.Updates;
 
 import it.univaq.disim.sose.rest.model.Movie_old;
 import it.univaq.disim.sose.rest.model.Order;
+import it.univaq.disim.sose.rest.model.Payment;
 import it.univaq.disim.sose.rest.model.PurchasedMovie;
 import it.univaq.disim.sose.rest.model.User;
 import it.univaq.disim.sose.rest.repository.UserRepository;
@@ -127,6 +134,8 @@ public class UserRepositoryMongo implements UserRepository{
 		return movies;
 	}
 	
+	
+	
 	@Override
 	public PurchasedMovie getMovie(long movieId) {
 
@@ -150,5 +159,33 @@ public class UserRepositoryMongo implements UserRepository{
 		}
 
 		return null;
+	}
+
+	@Override
+	public boolean addToLibrary(String userId, long movieId,Order order) {
+		
+		MongoDatabase database = MongoConnection.getDatabase();
+		MongoCollection<Document> collection = database.getCollection("Users");
+
+		
+		
+		//Query
+		//BasicDBObject searchQuery = new BasicDBObject();
+		//searchQuery.put("id", userId);
+		Gson gson= new Gson();
+		String orderStr = gson.toJson(order, Order.class);
+
+		//Document document = collection.find(searchQuery).first();
+		
+		//document.append("library", orderStr );
+		
+		Bson filter = Filters.eq("id", userId);
+		Bson update = Updates.push("library", Document.parse(orderStr));
+		FindOneAndUpdateOptions options = new FindOneAndUpdateOptions()
+		                                    .returnDocument(ReturnDocument.AFTER);
+		Document result = collection.findOneAndUpdate(filter, update, options);
+		System.out.println(result.toJson());
+		
+		return false;
 	}
 }

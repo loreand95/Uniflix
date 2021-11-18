@@ -60,7 +60,7 @@ public interface ShopRestControllerApi {
 			)
 			@GET
 		    @Path("/movie/{id}")
-		    public Movie_old getMovie(@PathParam(value = "id") String id);
+		    public PurchasedMovie getMovieById(@PathParam(value = "id") String id);
 			
 			@Operation(
 				       description = "The description of the getTodo operation goes here!",
@@ -68,11 +68,12 @@ public interface ShopRestControllerApi {
 				          @ApiResponse(
 				             description = "The description of the Response goes here!", 
 				             content = @Content(mediaType = MediaType.APPLICATION_JSON, 
-				                                schema = @Schema(implementation = Movie_old.class)))
+				                                schema = @Schema(implementation = PurchasedMovie.class)))
 				           }
 					)
 					@POST
 				    @Path("/buy/{id}")
 				    public String buyMovie(@PathParam(value = "id") String id);
+
 
 }
