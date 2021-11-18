@@ -8,6 +8,7 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>payservice</module>
+		<module>actorservice</module>
 		<module>movieservice</module>
 		<module>userservice</module>
 		<module>shopservice</module>
