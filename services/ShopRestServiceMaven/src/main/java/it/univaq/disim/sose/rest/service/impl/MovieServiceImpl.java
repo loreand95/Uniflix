@@ -69,7 +69,7 @@ public class MovieServiceImpl implements MovieService {
 
 
 
-	public MovieBO getMovieById(String movieId) {
+	public MovieBO getMovieById(String movieId,String userId, String authTokenHeader) {
 		WebClient client = WebClient.create( EndPointApi.MOVIE_SERVICE+"/"+movieId);
 		Response response = client.accept(MediaType.APPLICATION_JSON).get();
 		String value = response.readEntity(String.class);
@@ -82,6 +82,18 @@ public class MovieServiceImpl implements MovieService {
 			e.printStackTrace();
 		}
 		System.out.println("getMovieById Response:"+value );
+		
+		if(userId != null) {
+			List <MovieBO> library = new ArrayList<>();
+			UserServiceImpl userService = new UserServiceImpl();
+			library = userService.getUserLibrary(authTokenHeader);			
+			for(int i=0; i< library.size(); i++) {
+					if(library.get(i).getMovieId() == movie.getMovieId()) {
+						movie.setPurchaseDate(library.get(i).getPurchaseDate());
+						System.out.println("COMPRATO --------"+library.get(i).getTitle());
+					}
+				}
+			}
 		return movie;
 	};
 }

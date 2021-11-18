@@ -46,13 +46,12 @@ public class BusinessServiceImpl implements BusinessService {
 		return movies;
 	}
 
-	public void buyMovie(String MovieId, String userId) {
+	public void buyMovie(String MovieId, String userId,String authTokenHeader) {
 		DateTimeFormatter dtf = DateTimeFormatter.ISO_LOCAL_DATE_TIME; 
 		LocalDateTime now = LocalDateTime.now();
-		MovieBO movie = movieService.getMovieById(MovieId);
+		MovieBO movie = movieService.getMovieById(MovieId,userId,authTokenHeader);
 		Order order = new Order ();
 		order.setMovieId(Long.valueOf(MovieId).longValue());
-		//order.setPrice(setPrice(movie));
 		order.setPrice(setPrice(movie));
 		order.setPurchaseDate(dtf.format(now));
 		order.setId(UUID.randomUUID().toString());

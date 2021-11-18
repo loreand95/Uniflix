@@ -37,12 +37,10 @@ public class ShopRestControllerApiImpl implements ShopRestControllerApi{
 	@Override
 	public MovieBO getMovieById(String movieId) {
 		String authTokenHeader = httpServletRequest.getHeader("Authorization");
-		System.out.println("TOKEN--------"+authTokenHeader);
 		MovieBO movie = new MovieBO();
-		movie=movieService.getMovieById(movieId);
 		String userId = (String) httpServletRequest.getAttribute("userId");
-		System.out.println("USERID--------"+userId);
-		System.out.println("MovieID--------"+movieId);
+		movie=movieService.getMovieById(movieId,userId,authTokenHeader);
+		System.out.println(" getMovieById : MovieID--------"+movieId);
 		return movie;
 	}
 
@@ -54,7 +52,7 @@ public class ShopRestControllerApiImpl implements ShopRestControllerApi{
 		String userId = (String) httpServletRequest.getAttribute("userId");
 		String result = paymentService.buyMovie(authTokenHeader,userId);
 		if(true) {
-			businessService.buyMovie(MovieId, userId);
+			businessService.buyMovie(MovieId, userId,authTokenHeader);
 		};
 		return result;
 	}
