@@ -130,26 +130,14 @@ public class UserRepositoryMongo implements UserRepository{
 	public Movie getMovie(long movieId) {
 
 		MongoDatabase database = MongoConnection.getInstance().getDatabase();
-		MongoCollection<Document> collection = database.getCollection("Users");
+		MongoCollection<Document> collection = database.getCollection("Movies");
 
 		//Query
 		BasicDBObject searchQuery = new BasicDBObject();
 		searchQuery.put("movieId", movieId);
 
 		Document document = collection.find(searchQuery).first();
-		
-		Bson filter = Filters.eq("id", "66ba3a11-dc58-4f56-9424-93384aa76962");
-		Bson update = Updates.push("library", new Document());
-		FindOneAndUpdateOptions options = new FindOneAndUpdateOptions()
-		                                    .returnDocument(ReturnDocument.AFTER);
-		Document result = collection.findOneAndUpdate(filter, update, options);
-		
-		//Document result = collection.find(filter).first();
-		
-		System.out.println(result.toJson());
-
-		
-		
+				
 		try {
 			if(document != null) {
 				ObjectMapper mapper = new ObjectMapper();
