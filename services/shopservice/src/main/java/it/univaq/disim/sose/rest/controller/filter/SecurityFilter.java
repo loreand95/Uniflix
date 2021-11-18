@@ -2,7 +2,7 @@ package it.univaq.disim.sose.rest.controller.filter;
 
 
 import java.io.IOException;
-import java.security.Key;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -11,10 +11,10 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.Jwts;
-import it.univaq.disim.sose.rest.utils.JWTHelpers;
+
+import it.univaq.disim.sose.rest.dto.AuthResponse;
+import it.univaq.disim.sose.rest.service.AuthService;
+import it.univaq.disim.sose.rest.service.impl.AuthServiceImpl;
 
 
 public class SecurityFilter implements Filter{  
@@ -29,20 +29,13 @@ public class SecurityFilter implements Filter{
 		String authTokenHeader = httpRequest.getHeader("Authorization");
 
 		if (authTokenHeader != null && authTokenHeader.startsWith("Bearer ")) {
-			String token = authTokenHeader.substring("Bearer".length()).trim();
 
-			Key key = JWTHelpers.getInstance().getJwtKey();
+			AuthService authService = new AuthServiceImpl();
 			
-			try{
-				Jws<Claims> jwsc = Jwts.parser().setSigningKey(key).parseClaimsJws(token);
-				req.setAttribute("userId", jwsc.getBody().getId());
-			}catch(Exception ex) {
-				System.out.println("-------------------Prima ECCEZIONE");
-				ex.printStackTrace();
-				
-				((HttpServletResponse) resp).sendError(HttpServletResponse.SC_UNAUTHORIZED, "The token is not valid.");
-				return;
-			}
+			AuthResponse authResponse = authService.getAuth(authTokenHeader);
+			
+			req.setAttribute("userId", authResponse.getUserId());
+			
 		}else {
 			
 			if(httpRequest.getRequestURI().contains("/buy")) {
