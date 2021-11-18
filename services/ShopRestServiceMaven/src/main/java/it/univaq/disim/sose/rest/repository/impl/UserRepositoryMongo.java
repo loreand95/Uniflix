@@ -35,7 +35,7 @@ public class UserRepositoryMongo implements UserRepository{
 	@Override
 	public User signIn(User user) {
 
-		MongoDatabase database = MongoConnection.getDatabase();
+		MongoDatabase database = MongoConnection.getInstance().getInstance().getDatabase();
 		MongoCollection<Document> collection = database.getCollection("Users");
 
 		//Query
@@ -69,7 +69,7 @@ public class UserRepositoryMongo implements UserRepository{
 
 		user.setId(UUID.randomUUID().toString());
 
-		MongoDatabase database = MongoConnection.getDatabase();
+		MongoDatabase database = MongoConnection.getInstance().getDatabase();
 		MongoCollection<Document> collection = database.getCollection("Users");
 
 		Document newUser = new Document();
@@ -92,7 +92,7 @@ public class UserRepositoryMongo implements UserRepository{
 		Set<MovieBO> movies = new HashSet<MovieBO>();
 
 		//Connection
-		MongoDatabase database = MongoConnection.getDatabase();
+		MongoDatabase database = MongoConnection.getInstance().getDatabase();
 		MongoCollection<Document> collection = database.getCollection("Users");
 
 		//Query
@@ -130,7 +130,7 @@ public class UserRepositoryMongo implements UserRepository{
 	@Override
 	public MovieBO getMovie(long movieId) {
 
-		MongoDatabase database = MongoConnection.getDatabase();
+		MongoDatabase database = MongoConnection.getInstance().getDatabase();
 		MongoCollection<Document> collection = database.getCollection("Movies");
 		//Query
 		BasicDBObject searchQuery = new BasicDBObject();
@@ -151,7 +151,7 @@ public class UserRepositoryMongo implements UserRepository{
 
 	@Override
 	public boolean addToLibrary(String userId, long movieId,Order order) {
-		MongoDatabase database = MongoConnection.getDatabase();
+		MongoDatabase database = MongoConnection.getInstance().getDatabase();
 		MongoCollection<Document> collection = database.getCollection("Users");
 		Gson gson= new Gson();
 		String orderStr = gson.toJson(order, Order.class);
@@ -161,7 +161,7 @@ public class UserRepositoryMongo implements UserRepository{
 		FindOneAndUpdateOptions options = new FindOneAndUpdateOptions()
 				.returnDocument(ReturnDocument.AFTER);
 		Document result = collection.findOneAndUpdate(filter, update, options);
-		System.out.println(result.toJson());
+		//System.out.println(result.toJson());
 		return false;
 	}
 }

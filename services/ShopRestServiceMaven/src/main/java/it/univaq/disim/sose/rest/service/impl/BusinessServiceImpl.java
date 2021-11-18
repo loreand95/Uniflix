@@ -47,14 +47,14 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 
 	public void buyMovie(String MovieId, String userId) {
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+		DateTimeFormatter dtf = DateTimeFormatter.ISO_LOCAL_DATE_TIME; 
 		LocalDateTime now = LocalDateTime.now();
 		MovieBO movie = movieService.getMovieById(MovieId);
 		Order order = new Order ();
 		order.setMovieId(Long.valueOf(MovieId).longValue());
 		//order.setPrice(setPrice(movie));
 		order.setPrice(setPrice(movie));
-		order.setPurchaseDate(dtf.format(now).toString());
+		order.setPurchaseDate(dtf.format(now));
 		order.setId(UUID.randomUUID().toString());
 		userRepo.addToLibrary(userId, Long.valueOf(MovieId).longValue(), order);
 	}
