@@ -7,20 +7,20 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @XmlRootElement(name="Movies")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PurchasedMovie extends Movie{
+public class MovieBO extends Movie{
 
 	@JsonIgnore
 	private String purchaseDate;
 	private double price;
-	
-	public PurchasedMovie() {}
-	
-	public PurchasedMovie( String purchaseDate, double price) {
+
+	public MovieBO() {}
+
+	public MovieBO( String purchaseDate, double price) {
 		super();
 		this.purchaseDate = purchaseDate;
 		this.price = price;
 	}
-	
+
 	public String getPurchaseDate() {
 		return purchaseDate;
 	}
@@ -42,6 +42,6 @@ public class PurchasedMovie extends Movie{
 
 
 
-	
-	
+
+
 }

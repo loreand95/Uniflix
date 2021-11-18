@@ -8,17 +8,17 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude(Include.NON_NULL)
 @XmlRootElement(name="Payment")
 public class Payment {
-	
+
 	private String userId;
-	
+
 	private double amount; 
 
-	
-	
+
+
 	public Payment() {}
 
-	
-	
+
+
 	public String getUserId() {
 		return userId;
 	}

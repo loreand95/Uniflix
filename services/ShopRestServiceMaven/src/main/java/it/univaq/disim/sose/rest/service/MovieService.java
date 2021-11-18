@@ -1,12 +1,10 @@
 package it.univaq.disim.sose.rest.service;
 
 import java.util.List;
-
-import it.univaq.disim.sose.rest.model.Movie_old;
-import it.univaq.disim.sose.rest.model.PurchasedMovie;
+import it.univaq.disim.sose.rest.model.MovieBO;
 
 public interface MovieService {
-	
-	public List<PurchasedMovie> getAll();
+	public List<MovieBO> getAll();
 	public void getAll2();
+	public MovieBO getMovieById(String movieId);
 }

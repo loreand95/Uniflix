@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 public class MovieList  extends ArrayList<Movie> {
-	
-public MovieList() {}
+
+	public MovieList() {}
 
 }

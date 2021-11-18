@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Genre {
-	
+
 	private int genreId;
 	private String name;
-	
+
 	public Genre() {}
 
 	public int getGenreId() {
@@ -25,5 +25,5 @@ public class Genre {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 }

@@ -11,15 +11,15 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude(Include.NON_NULL)
 @XmlRootElement(name="User")
 public class User {
-	
+
 	private String id;
-	
+
 	private String email;
-	
+
 	private String password;
-	
+
 	private String token;
-	
+
 	private String fullname;
 
 

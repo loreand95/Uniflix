@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @XmlRootElement(name="Movies")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Movie {
-	
+
 	@JsonIgnore
 	private ObjectId id;
 	private String title;
@@ -35,7 +35,7 @@ public class Movie {
 	private int voteCount;
 	private String status;
 	private long movieId;
-	
+
 	public Movie() {}
 
 	public ObjectId getId() {
@@ -197,7 +197,7 @@ public class Movie {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+
 	public long getMovieId() {
 		return movieId;
 	}
@@ -241,8 +241,5 @@ public class Movie {
 				+ ", movieId=" + movieId + ", voteAverage=" + voteAverage + ", voteCount=" + voteCount + ", status="
 				+ status + "]";
 	}
-	
-	
-	
-	
+
 }

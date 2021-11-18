@@ -11,13 +11,13 @@ import com.google.gson.Gson;
 
 import it.univaq.disim.sose.rest.model.Order;
 import it.univaq.disim.sose.rest.model.Payment;
-import it.univaq.disim.sose.rest.model.PurchasedMovie;
+import it.univaq.disim.sose.rest.model.MovieBO;
 import it.univaq.disim.sose.rest.service.PaymentService;
 import it.univaq.disim.sose.rest.utils.EndPointApi;
 
 public class PaymentServiceImpl implements PaymentService {
 
-	
+
 	public String buyMovie(String token,String UserId){	
 		WebClient client = WebClient.create( EndPointApi.PAY_SERVICE_BUY);
 		client.header("Authorization", token);
@@ -33,6 +33,6 @@ public class PaymentServiceImpl implements PaymentService {
 		System.out.println("-------------- TOKEN "+token);
 		System.out.println("-------------- response PAY_SERVICE_BUY"+value);
 		return value;
-				}
+	}
 
 }

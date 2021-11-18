@@ -6,7 +6,7 @@ public class ProductionCompany {
 	private String originCountry;
 	private String name;
 	private int id;
-	
+
 	public ProductionCompany() {}
 
 	public String getLogoPath() {
@@ -40,7 +40,7 @@ public class ProductionCompany {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	
-	
+
+
+
 }

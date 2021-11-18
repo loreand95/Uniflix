@@ -1,19 +1,29 @@
 package it.univaq.disim.sose.rest.service.impl;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
-import it.univaq.disim.sose.rest.model.PurchasedMovie;
+import it.univaq.disim.sose.rest.model.Order;
+import it.univaq.disim.sose.rest.model.MovieBO;
+import it.univaq.disim.sose.rest.repository.UserRepository;
+import it.univaq.disim.sose.rest.repository.impl.UserRepositoryMongo;
 import it.univaq.disim.sose.rest.service.BusinessService;
+import it.univaq.disim.sose.rest.service.MovieService;
 
 public class BusinessServiceImpl implements BusinessService {
 
+	private MovieService movieService = new MovieServiceImpl();
+	private UserRepository userRepo = new UserRepositoryMongo(); 
 	
-	public List<PurchasedMovie> shopMovieTicketing(String authTokenHeader, MovieServiceImpl movieService,
+	
+	public List<MovieBO> shopMovieTicketing(String authTokenHeader,
 			String userId) {
-		List<PurchasedMovie> movies;
+		List<MovieBO> movies;
 		if(userId != null) {
-			List <PurchasedMovie> library = new ArrayList<>();
+			List <MovieBO> library = new ArrayList<>();
 			UserServiceImpl userService = new UserServiceImpl();
 			library = userService.getUserLibrary(authTokenHeader);
 			movies = movieService.getAll();			
@@ -31,11 +41,29 @@ public class BusinessServiceImpl implements BusinessService {
 			System.out.println("ELSE SENZA USER --------"+userId);
 		}
 		for(int z=0; z< movies.size(); z++) {
-			if((z % 2) == 0) movies.get(z).setPrice(3.99);
-			else movies.get(z).setPrice(7.99);
-			System.out.println("------ PREZZO MOVIE: "+ movies.get(z).getPrice());
+			setPrice(movies.get(z));
 		}
 		return movies;
 	}
-	
+
+	public void buyMovie(String MovieId, String userId) {
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+		LocalDateTime now = LocalDateTime.now();
+		MovieBO movie = movieService.getMovieById(MovieId);
+		Order order = new Order ();
+		order.setMovieId(Long.valueOf(MovieId).longValue());
+		//order.setPrice(setPrice(movie));
+		order.setPrice(setPrice(movie));
+		order.setPurchaseDate(dtf.format(now).toString());
+		order.setId(UUID.randomUUID().toString());
+		userRepo.addToLibrary(userId, Long.valueOf(MovieId).longValue(), order);
+	}
+
+	private Double setPrice (MovieBO movie) {
+		Double price = 3.99;
+		movie.setPrice(price);
+		System.out.println("------ PREZZO MOVIE: "+ movie.getPrice());
+		return price;
+	}
+
 }

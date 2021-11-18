@@ -2,12 +2,14 @@ package it.univaq.disim.sose.rest.service;
 
 import java.util.List;
 
-import it.univaq.disim.sose.rest.model.PurchasedMovie;
+import it.univaq.disim.sose.rest.model.MovieBO;
 import it.univaq.disim.sose.rest.service.impl.MovieServiceImpl;
 
 public interface BusinessService {
 
-public List<PurchasedMovie> shopMovieTicketing(String authTokenHeader, MovieServiceImpl movieService,
+	public List<MovieBO> shopMovieTicketing(String authTokenHeader,
 			String userId);
-	
+
+	public void buyMovie(String movieId, String userId);
+
 }
