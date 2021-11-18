@@ -17,7 +17,7 @@ import it.univaq.disim.sose.rest.model.MovieBO;
 import it.univaq.disim.sose.rest.service.MovieService;
 
 public class MovieServiceImpl implements MovieService {
-
+	private UserServiceImpl userService = new UserServiceImpl();
 
 	// TODO test: questo metodo probabilmente va eliminato 
 	public  void getAll2() {
@@ -85,7 +85,6 @@ public class MovieServiceImpl implements MovieService {
 		
 		if(userId != null) {
 			List <MovieBO> library = new ArrayList<>();
-			UserServiceImpl userService = new UserServiceImpl();
 			library = userService.getUserLibrary(authTokenHeader);			
 			for(int i=0; i< library.size(); i++) {
 					if(library.get(i).getMovieId() == movie.getMovieId()) {

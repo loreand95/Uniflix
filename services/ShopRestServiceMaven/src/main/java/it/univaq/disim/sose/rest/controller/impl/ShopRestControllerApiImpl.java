@@ -21,6 +21,7 @@ public class ShopRestControllerApiImpl implements ShopRestControllerApi{
 	private MovieServiceImpl movieService = new MovieServiceImpl();
 	private PaymentServiceImpl paymentService = new PaymentServiceImpl();
 	private BusinessService businessService = new BusinessServiceImpl();
+	
 
 	@Override
 	public List<MovieBO> getAllMovies() {
@@ -51,9 +52,9 @@ public class ShopRestControllerApiImpl implements ShopRestControllerApi{
 		System.out.println("TOKEN--------"+authTokenHeader);
 		String userId = (String) httpServletRequest.getAttribute("userId");
 		String result = paymentService.buyMovie(authTokenHeader,userId);
-		if(true) {
-			businessService.buyMovie(MovieId, userId,authTokenHeader);
+		if(businessService.buyMovie(MovieId, userId,authTokenHeader)) {
+			return result;
 		};
-		return result;
+		return "Error:Possiedi gia questo film";
 	}
 }

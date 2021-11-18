@@ -16,7 +16,8 @@ import it.univaq.disim.sose.rest.service.MovieService;
 public class BusinessServiceImpl implements BusinessService {
 
 	private MovieService movieService = new MovieServiceImpl();
-	private UserRepository userRepo = new UserRepositoryMongo(); 
+	private UserRepository userRepo = new UserRepositoryMongo();
+	private UserServiceImpl userService = new UserServiceImpl();
 	
 	
 	public List<MovieBO> shopMovieTicketing(String authTokenHeader,
@@ -46,17 +47,29 @@ public class BusinessServiceImpl implements BusinessService {
 		return movies;
 	}
 
-	public void buyMovie(String MovieId, String userId,String authTokenHeader) {
+	public boolean buyMovie(String MovieId, String userId,String authTokenHeader) {
 		DateTimeFormatter dtf = DateTimeFormatter.ISO_LOCAL_DATE_TIME; 
 		LocalDateTime now = LocalDateTime.now();
 		MovieBO movie = movieService.getMovieById(MovieId,userId,authTokenHeader);
+		List <MovieBO> library = new ArrayList<>();
+		library = userService.getUserLibrary(authTokenHeader);			
+		for(int i=0; i< library.size(); i++) {
+			if(library.get(i).getMovieId() == movie.getMovieId()) {
+				movie.setPurchaseDate(library.get(i).getPurchaseDate());
+				System.out.println("POSSIEDI GIA QUESTO FILM-------"+library.get(i).getTitle());
+				return false;
+			}
+		}
 		Order order = new Order ();
 		order.setMovieId(Long.valueOf(MovieId).longValue());
 		order.setPrice(setPrice(movie));
 		order.setPurchaseDate(dtf.format(now));
 		order.setId(UUID.randomUUID().toString());
-		userRepo.addToLibrary(userId, Long.valueOf(MovieId).longValue(), order);
+		userService.addToLibrary(MovieId, userId, order);
+		return true;
 	}
+
+
 
 	private Double setPrice (MovieBO movie) {
 		Double price = 3.99;

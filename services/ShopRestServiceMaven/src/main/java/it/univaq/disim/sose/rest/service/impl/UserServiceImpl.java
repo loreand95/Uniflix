@@ -14,12 +14,15 @@ import org.json.JSONArray;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import it.univaq.disim.sose.rest.model.MovieBO;
+import it.univaq.disim.sose.rest.model.Order;
+import it.univaq.disim.sose.rest.repository.UserRepository;
+import it.univaq.disim.sose.rest.repository.impl.UserRepositoryMongo;
 import it.univaq.disim.sose.rest.service.UserService;
 import it.univaq.disim.sose.rest.utils.EndPointApi;
 
 public class UserServiceImpl implements UserService{
 
-
+	private UserRepository userRepo = new UserRepositoryMongo();
 
 	public List<MovieBO> getUserLibrary(String token){	
 		//WebClient client = WebClient.create( EndPointApi.USER_SERVICE_GET_LIBRARY);
@@ -44,7 +47,11 @@ public class UserServiceImpl implements UserService{
 			e.printStackTrace();
 		}
 		return moviesPojo;
-	};
+	}
+
+		public void addToLibrary(String MovieId, String userId, Order order) {
+		userRepo.addToLibrary(userId, Long.valueOf(MovieId).longValue(), order);
+	}
 
 
 }

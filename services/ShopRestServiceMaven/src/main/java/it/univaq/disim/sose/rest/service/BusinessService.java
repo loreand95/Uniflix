@@ -10,6 +10,6 @@ public interface BusinessService {
 	public List<MovieBO> shopMovieTicketing(String authTokenHeader,
 			String userId);
 
-	public void buyMovie(String movieId, String userId,String authTokenHeader);
+	public boolean buyMovie(String movieId, String userId,String authTokenHeader);
 
 }
