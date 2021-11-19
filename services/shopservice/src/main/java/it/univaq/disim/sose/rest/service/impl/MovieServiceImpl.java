@@ -24,7 +24,6 @@ public class MovieServiceImpl implements MovieService {
 		WebClient client = WebClient.create( EndPointApi.MOVIE_SERVICE);
 		Response response = client.accept(MediaType.APPLICATION_JSON).get();
 		String value = response.readEntity(String.class);	
-		System.out.println(value);
 		JSONArray moviesJson = new JSONArray(value);
 		ObjectMapper mapper = new ObjectMapper();
 		List<Movie> movies = new ArrayList<>();
@@ -39,7 +38,6 @@ public class MovieServiceImpl implements MovieService {
 				e.printStackTrace();
 			}
 		}
-		System.out.println(movies);		
 	}
 
 
@@ -52,7 +50,6 @@ public class MovieServiceImpl implements MovieService {
 		WebClient client = WebClient.create( EndPointApi.MOVIE_SERVICE);
 		Response response = client.accept(MediaType.APPLICATION_JSON).get();
 		String value = response.readEntity(String.class);
-		System.out.println(value);
 		JSONArray moviesJson = new JSONArray(value);
 		List <MovieBO> moviesPojo = new ArrayList<MovieBO>();
 		ObjectMapper mapper = new ObjectMapper();
@@ -60,7 +57,6 @@ public class MovieServiceImpl implements MovieService {
 		try {
 			// 2. convert JSON array to List of objects
 			moviesPojo = Arrays.asList(mapper.readValue(json, MovieBO[].class));
-			System.out.println("\nJSON array to List of objects");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -81,7 +77,6 @@ public class MovieServiceImpl implements MovieService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("getMovieById Response:"+value );
 		
 		//ESTIMATE PRICE TODO
 		movie.setPrice(3.99);
@@ -93,7 +88,6 @@ public class MovieServiceImpl implements MovieService {
 					if(library.get(i).getMovieId() == movie.getMovieId()) {
 						movie.setPurchaseDate(library.get(i).getPurchaseDate());
 						movie.setPrice(0);
-						System.out.println("COMPRATO --------"+library.get(i).getTitle());
 					}
 				}
 			}

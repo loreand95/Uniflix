@@ -3,74 +3,96 @@ import Skeleton from "@mui/material/Skeleton";
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getActorsFetch } from "../api/rest/filmService";
-import { getFilmById } from "../api/rest/shopService";
 import ActorScrollCards from "../components/ActorScrollCards";
 import BuyButton from "../components/BuyButton";
 import UserReviews from "../components/UserReviews";
 import BaseLayout from "./BaseLayout";
+import { useDispatch } from 'react-redux';
+import { getMovieAction } from '../redux/reducers/userSlice';
 
-export default function FilmPage({ data }) {
+export default function FilmPage() {
+  const dispatch = useDispatch();
+
   const { id } = useParams();
 
   const [film, setFilm] = useState();
-  const [actors, setActors] = useState();
+
+
+  useEffect(() => {
+    console.log(film)
+  }, [film]);
 
   useEffect(() => {
     if (id) {
-      getFilmById(id).then(setFilm);
-      getActorsFetch(id).then(setActors);
+      dispatch(getMovieAction(id)).then((res) => {
+        setFilm(res)
+      }).catch(e =>{
+        console.log(e)
+      })
     }
-  }, [id]);
+  }, [dispatch,id]);
 
   return (
     <BaseLayout>
-
-        <div style={{ textAlign: "center" }}>
-          {film ? (
-            <img
-              alt={film.title}
-              style={{ width: "100%", height: "400px", objectFit: "cover" }}
-              src={"https://image.tmdb.org/t/p/original" + film.backdropPath}
-            />
-          ) : (
-            <div
-              style={{
-                margin: "0 auto",
-              }}
-            >
-              <Skeleton height={300} />
-            </div>
-          )}
+      <div style={{ textAlign: "center" }}>
+        {film ? (
+          <img
+            alt={film.title}
+            style={{ width: "100%", height: "400px", objectFit: "cover" }}
+            src={film.backdropPath}
+          />
+        ) : (
           <div
             style={{
+              textAlign: "center",
               margin: "0 auto",
-              marginTop: "15px",
             }}
           >
-            <Typography variant="h3">
-              {film ? film.title : <Skeleton />}
-            </Typography>
-            <Typography variant="h6">
-              {film ? (
-                `${film.author} - ${film.year} - ${film.duration} min`
-              ) : (
-                <Skeleton />
-              )}
-            </Typography>
-            {film && <BuyButton film={film} />}
+            <Skeleton variant="rectangular" height={400} />
           </div>
+        )}
+        <div
+          style={{
+            margin: "0 auto",
+            marginTop: "15px",
+          }}
+        >
+          <Typography variant="h3">
+            {film ? (
+              film.title
+            ) : (
+              <Skeleton sx={{ margin: "auto" }} width={400} />
+            )}
+          </Typography>
+          <Typography variant="h6">
+            {film ? (
+              `${film.releaseDate?.substr(0, 4)} - ${film.genres[0].name}`
+            ) : (
+              <Skeleton sx={{ margin: "auto" }} width={400} />
+            )}
+          </Typography>
+          {film && <BuyButton film={film} setFilm={setFilm}/>}
         </div>
-        <Container maxWidth="md">
-        <div style={{textAlign: "justify"}}>
+      </div>
+      <Container maxWidth="md">
+        <div style={{ textAlign: "justify" }}>
           <Typography variant="h4">Description</Typography>
           <Typography variant="body">
-            {film ? film.overview : <Skeleton />}
+            {film ? (
+              film.overview
+            ) : (
+              <>
+                <Skeleton />
+                <Skeleton />
+                <Skeleton />
+                <Skeleton />
+              </>
+            )}
           </Typography>
         </div>
-        <div style={{ margin: "0 auto" }} >
-          {film && actors && <ActorScrollCards actors={actors} />}
-          {film && <UserReviews movie={film} />}
+        <div style={{ margin: "0 auto" }}>
+          {film && film.cast && <ActorScrollCards cast={film.cast} />}
+          {film && film.reviews && <UserReviews reviews={film.reviews} />}
         </div>
       </Container>
     </BaseLayout>

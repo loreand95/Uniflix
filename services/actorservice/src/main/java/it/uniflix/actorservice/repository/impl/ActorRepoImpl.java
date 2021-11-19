@@ -34,6 +34,8 @@ public class ActorRepoImpl implements ActorRepo {
 	}
 
 	public ActorDetail getActor(long actorId) {
+		System.out.println("actorId "+actorId);
+		
 		ActorDetail actor = actorColl.find(eq("actorId", actorId)).first();
 		
 		return actor;

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Carousel from "../components/Carousel";
 import CategoryCards from "../components/CategoryCards";
 import BaseLayout from "./BaseLayout";
-import { getAllFilmByCategory } from "../api/rest/shopService";
+import { getMoviesByGenre } from "../api/rest/filmService";
 import WelcomeLoader from "../components/welcomeLoader/WelcomeLoader";
 
 export default function HomePage({ match }) {
@@ -19,8 +19,8 @@ export default function HomePage({ match }) {
 
   //Retrieve movies
   useEffect(() => {
-    getAllFilmByCategory("best").then((response) => {
-      setFilm(response.data[0]);
+    getMoviesByGenre(28).then((response) => {
+      setFilm(response[0]);
     });
   }, []);
 
@@ -29,8 +29,7 @@ export default function HomePage({ match }) {
       {isLoading && <WelcomeLoader />}
       <BaseLayout>
         <Carousel film={film} />
-        <CategoryCards categoryName="adventure" />
-        <CategoryCards categoryName="drama" />
+        <CategoryCards genreId={28} title="Adventure" />
       </BaseLayout>
     </div>
   );

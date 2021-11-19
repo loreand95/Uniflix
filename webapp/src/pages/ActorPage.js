@@ -35,6 +35,7 @@ export default function ActorPage() {
 }
 
 function ActorDetail({ actor }) {
+
   return (
     <Box sx={{ textAlign: 'center' }}>
       <Box>

@@ -27,10 +27,8 @@ public class ShopRestControllerApiImpl implements ShopRestControllerApi{
 	public List<MovieBO> getAllMovies() {
 
 		String authTokenHeader = httpServletRequest.getHeader("Authorization");
-		System.out.println("TOKEN--------"+authTokenHeader);
 		List <MovieBO> movies = new ArrayList<>();
 		String userId = (String) httpServletRequest.getAttribute("userId");
-		System.out.println("USERID--------"+userId);
 		movies = shopService.shopMovieTicketing(authTokenHeader, userId);
 		return movies;
 	}
@@ -41,7 +39,6 @@ public class ShopRestControllerApiImpl implements ShopRestControllerApi{
 		MovieBO movie = new MovieBO();
 		String userId = (String) httpServletRequest.getAttribute("userId");
 		movie=movieService.getMovieById(movieId,userId,authTokenHeader);
-		System.out.println(" getMovieById : MovieID--------"+movieId);
 		return movie;
 	}
 
@@ -49,7 +46,6 @@ public class ShopRestControllerApiImpl implements ShopRestControllerApi{
 	@Override
 	public String buyMovie(String MovieId) {
 		String authTokenHeader = httpServletRequest.getHeader("Authorization");
-		System.out.println("TOKEN--------"+authTokenHeader);
 		String userId = (String) httpServletRequest.getAttribute("userId");
 		String result = paymentService.buyMovie(authTokenHeader,userId);
 		if(businessService.buyMovie(MovieId, userId,authTokenHeader)) {

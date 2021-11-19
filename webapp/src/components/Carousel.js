@@ -34,7 +34,7 @@ function Carousel({ film }) {
         <Button
           variant="contained"
           component={Link}
-          to={"/films/" + film.id}
+          to={"/films/" + film.movieId}
           startIcon={<PlayArrowRoundedIcon />}
         >
           Preview
@@ -45,7 +45,7 @@ function Carousel({ film }) {
           {film.title}
         </Typography>
         <Typography className={classes.description} variant="h6" color="white">
-          {film.year} - {film.author} - {film.duration} min
+          {film.releaseDate?.substr(0,4)} - {film.duration || 120} min
         </Typography>
       </div>
     </div>

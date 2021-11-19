@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { signInFetch, signUpFetch, getLibraryFetch } from '../../api/rest/userService';
+import { buyMovieFetch, getFilmById } from '../../api/rest/shopService';
 
 const initialState = {
   fullname: null,
@@ -36,6 +37,21 @@ export const getLibraryAction = () => {
   return async (dispatch, getState) => {
        const token= getState().user.token;
       return getLibraryFetch(token);
+  };
+};
+
+export const buyMovieAction = (movieId) => {
+  return async (dispatch, getState) => {
+       const token= getState().user.token;
+      return buyMovieFetch(token, movieId);
+  };
+};
+
+export const getMovieAction = (movieId) => {
+  return async (dispatch, getState) => {
+       const token= getState().user.token;
+       console.log('token',token)
+      return getFilmById(token, movieId);
   };
 };
 

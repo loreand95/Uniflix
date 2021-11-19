@@ -36,7 +36,7 @@ public class JWTHelpers {
             
             return Encoders.BASE64.encode(jwtKey.getEncoded());
         } catch (NoSuchAlgorithmException ex) {
-            System.out.println("ERRORE");
+            //System.out.println("ERRORE");
         }
 		return DEFAULT_SECRET_WORD;
     }

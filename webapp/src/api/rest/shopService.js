@@ -15,25 +15,37 @@ const shopService = axios.create({
   headers: shopServiceConfig.configHeaders,
 });
 
-export async function getAllFilmByCategory(category){
+const checkToken = (token) =>{
+
+  let t = 'd';
+
+  if(token){
+    shopService.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  }else{
+    shopService.defaults.headers.common['Authorization'] = null;
+    t = new Date().getTime();
+  }
+
+  return t;
+}
+
+export async function getFilmById(token, movieId){
+
+  let t = checkToken(token);
+
   return shopService
-  .get('/movies?category='+category).then(res => res.data)
+  .get('/movies/'+movieId+'?t='+t).then(res => res.data)
   .catch((error) => {
     throw error;
   });
 }
 
-export async function getFilmById(id){
-  return shopService
-  .get('/movies/'+id).then(res => res.data)
-  .catch((error) => {
-    throw error;
-  });
-}
+export async function buyMovieFetch(token, movieId){
 
-export async function buyMovieFetch(id){
+  let t = checkToken(token);
+
   return shopService
-  .post('/movies/'+id+'/buy').then(res => res.data)
+  .post('/movies/'+movieId+'/buy?t='+t).then(res => res.data)
   .catch((error) => {
     throw error;
   });

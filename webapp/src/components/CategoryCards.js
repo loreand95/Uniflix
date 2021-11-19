@@ -5,9 +5,10 @@ import FilmCard from "./FilmCard";
 import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import { Typography } from "@mui/material";
-import { getAllFilmByCategory } from "../api/rest/shopService";
+import { getMoviesByGenre } from "../api/rest/filmService";
 import useMediaQuery from "@mui/material/useMediaQuery";
-function CategoryCards({ categoryName }) {
+
+function CategoryCards({ genreId , title }) {
   const [items, setItems] = React.useState([]);
   const [selected, setSelected] = React.useState([]);
 
@@ -26,10 +27,10 @@ function CategoryCards({ categoryName }) {
     };
 
   useEffect(() => {
-    getAllFilmByCategory(categoryName).then((response) => {
-      setItems(response.data);
+    getMoviesByGenre(genreId).then((response) => {
+      setItems(response);
     });
-  }, [categoryName]);
+  }, [genreId]);
 
   return (
     <div>
@@ -42,7 +43,7 @@ function CategoryCards({ categoryName }) {
         }}
         variant="h5"
       >
-        {categoryName}
+        {title}
       </Typography>
       <ScrollMenu
         LeftArrow={LeftArrow}

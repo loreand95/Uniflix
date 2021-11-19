@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const serviceConfig = {
   url: process.env.REACT_APP_URI_FILM_SERVICE,
-  timeout: 6000,
+  timeout: 12000,
   configHeaders: {
     'Accept': 'application/json',
     'Content-Type': 'application/json'
@@ -26,6 +26,14 @@ export async function getActorFetch(actorId){
 export async function getActorsFetch(movieId){
   return service
   .get('/movies/'+movieId+'/actors').then(res => res.data)
+  .catch((error) => {
+    throw error;
+  });
+}
+
+export async function getMoviesByGenre(genreId){
+  return service
+  .get('/genre/'+genreId+'/movies').then(res => res.data)
   .catch((error) => {
     throw error;
   });

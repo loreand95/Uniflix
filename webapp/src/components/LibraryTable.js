@@ -29,7 +29,7 @@ export default function LibraryTable({ movies }) {
             <TableBody>
               {movies.map((row) => (
                 <TableRow
-                  key={row.id}
+                  key={row.movieId}
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                   <TableCell>{row.title}</TableCell>
@@ -39,7 +39,7 @@ export default function LibraryTable({ movies }) {
                   <TableCell>
                     <Button
                     component={Link}
-                    to={'/films/' + row.id}>
+                    to={'/films/' + row.movieId}>
                       Show
                     </Button>
                   </TableCell>

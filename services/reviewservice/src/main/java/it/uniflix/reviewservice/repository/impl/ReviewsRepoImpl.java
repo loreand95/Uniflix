@@ -20,7 +20,7 @@ public class ReviewsRepoImpl implements ReviewsRepo {
 	@Override
 	public List<Review> getAllReviewsByMovie(long movieId) {
 		List <Review> reviews = reviewsCollection.find(eq("movieId",movieId)).into(new ArrayList<Review>());
-		System.out.println("getAllReviewsByMovie"+ movieId + "REVIEWS: "+reviews);
+		//System.out.println("getAllReviewsByMovie"+ movieId + "REVIEWS: "+reviews);
 		return reviews;
 	}
 
