@@ -37,3 +37,4 @@ services/payservice/.classpath
 services/userservice/.classpath
 services/payservice/.classpath
 *.class
+webapp/.env.production
