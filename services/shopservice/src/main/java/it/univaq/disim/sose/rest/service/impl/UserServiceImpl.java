@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService{
 		client.header("Authorization", token);
 		Response response = client.accept(MediaType.APPLICATION_JSON).get();
 		String value = response.readEntity(String.class);
-		System.out.println("getUserLibrary-----------response"+value);
+		//System.out.println("getUserLibrary-----------response"+value);
 		JSONArray moviesJson = new JSONArray(value);
 		List <MovieBO> moviesPojo = new ArrayList<MovieBO>();
 		ObjectMapper mapper = new ObjectMapper();
@@ -41,8 +41,7 @@ public class UserServiceImpl implements UserService{
 		try {
 			// 2. convert JSON array to List of objects
 			moviesPojo = Arrays.asList(mapper.readValue(json, MovieBO[].class));
-			System.out.println("\nJSON array to List of objects");
-			moviesPojo.stream().forEach(x -> System.out.println(x));
+			//System.out.println("\nJSON array to List of objects");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

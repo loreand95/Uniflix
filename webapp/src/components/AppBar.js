@@ -24,10 +24,10 @@ export default function CustomAppBar({onlyLogo}) {
           </Typography>
           <>
           {
-            user.fullname ?
+            user.token ?
              <div>
               <Button color="inherit" component={Link} to={'/library'}>Library</Button> 
-              <Button color="inherit" component={Link} to={'/account'}>{user.fullname}</Button>
+              <Button color="inherit" component={Link} to={'/account'}>{user.fullname || 'Account'}</Button>
              </div>:
              !onlyLogo && <Button color="inherit" component={Link} to={'/signin'}>Sign In</Button>
           }

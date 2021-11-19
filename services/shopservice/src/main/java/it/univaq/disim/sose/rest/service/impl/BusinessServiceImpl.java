@@ -32,14 +32,14 @@ public class BusinessServiceImpl implements BusinessService {
 				for(int j=0; j< movies.size(); j++) {
 					if(library.get(i).getMovieId() == movies.get(j).getMovieId()) {
 						movies.get(j).setPurchaseDate(library.get(i).getPurchaseDate());
-						System.out.println("COMPRATO --------"+library.get(i).getTitle());
+						//System.out.println("COMPRATO --------"+library.get(i).getTitle());
 					}
 				}
 			}
 		}
 		else {
 			movies = movieService.getAll();
-			System.out.println("ELSE SENZA USER --------"+userId);
+			//System.out.println("ELSE SENZA USER --------"+userId);
 		}
 		for(int z=0; z< movies.size(); z++) {
 			setPrice(movies.get(z));
@@ -56,7 +56,7 @@ public class BusinessServiceImpl implements BusinessService {
 		for(int i=0; i< library.size(); i++) {
 			if(library.get(i).getMovieId() == movie.getMovieId()) {
 				movie.setPurchaseDate(library.get(i).getPurchaseDate());
-				System.out.println("POSSIEDI GIA QUESTO FILM-------"+library.get(i).getTitle());
+				//System.out.println("POSSIEDI GIA QUESTO FILM-------"+library.get(i).getTitle());
 				return false;
 			}
 		}
@@ -74,7 +74,7 @@ public class BusinessServiceImpl implements BusinessService {
 	private Double setPrice (MovieBO movie) {
 		Double price = 3.99;
 		movie.setPrice(price);
-		System.out.println("------ PREZZO MOVIE: "+ movie.getPrice());
+		//System.out.println("------ PREZZO MOVIE: "+ movie.getPrice());
 		return price;
 	}
 

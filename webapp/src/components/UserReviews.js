@@ -1,23 +1,14 @@
-import * as React from 'react';
-import { useEffect, useState } from "react";
-import { getReviewsFilmById } from '../api/rest/reviewService';
+import Avatar from '@mui/material/Avatar';
+import Divider from '@mui/material/Divider';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
-import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Avatar from '@mui/material/Avatar';
+import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 import { Box } from '@mui/system';
+import * as React from 'react';
 
-export default function UserReviews({ movie }) {
-
-  const [reviews, setReviews] = useState();
-
-  useEffect(() => {
-    getReviewsFilmById(movie.id).then(setReviews);
-  }, [movie]);
-
+export default function UserReviews({ reviews }) {
   return (
     <Box sx={{ mt: 3 }}>
       <Typography
@@ -25,8 +16,9 @@ export default function UserReviews({ movie }) {
         Reviews
       </Typography>
       <List>
-        {reviews && reviews.map((review) =>
-          <ReviewItem key={review.id} review={review} />
+        {reviews && reviews.length === 0 && 'No reviews yet'}
+        {reviews && reviews.map((review, index) =>
+          <ReviewItem key={index} review={review} />
         )}
       </List>
     </Box>
@@ -34,6 +26,12 @@ export default function UserReviews({ movie }) {
 }
 
 function ReviewItem({ review }) {
+
+  //Content too long
+  if(review.content.length > 300){
+    review.content = review.content.substr(0,300) + ' ... ';
+  }
+
   return (
     <>
       <ListItem alignItems="flex-start">

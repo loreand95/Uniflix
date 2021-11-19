@@ -1,45 +1,42 @@
-import * as React from 'react';
-import IconButton from '@mui/material/IconButton';
-import PlayCircleOutlineRoundedIcon from '@mui/icons-material/PlayCircleOutlineRounded';
-import { Typography } from '@mui/material';
-import { Link } from 'react-router-dom';
+import * as React from "react";
+import { Paper, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
+import { makeStyles } from "@mui/styles";
 
-export default function FilmCard({film}) {
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    margin: "10px",
+    position: "relative",
+    transition: "box-shadow .3s",
+    "&:hover": {
+      boxShadow: "0 0 13px #E50914",
+    },
+  },
+  img: {
+    borderRadius: "1%",
+    position: "relative",
+    maxWidth: 200,
+    objectFit: "cover",
+  },
+  title: {
+    bottom: "10px",
+    left: "10px",
+    position: "absolute",
+  },
+}));
+
+export default function FilmCard({ film }) {
+  const classes = useStyles();
+
   return (
-    <div
-    style={{
-      margin:'10px',
-      position:'relative'
-    }}>
-      <img src={film.posterPath} alt="" style={{borderRadius:'5%',position: 'relative', maxWidth:250,minHeight:'200px', objectFit: "cover"}}/>
-      <IconButton
-        aria-label="add an alarm"
-            style={{
-              top:'30px',
-              left:'50px',
-              position:'absolute',
-              width:'150px',
-              height:'150px',
-              color: 'white'
-            }}
-            component={Link}
-            to={'/films/' + film.movieId}
-      >
-        <PlayCircleOutlineRoundedIcon />
-      </IconButton>
-      <div
-          style={{
-            bottom:'10px',
-            left:'10px',
-            position:'absolute'
-          }}>
-            <Typography
-            variant='subtitle1'
-            color="white"
-            >
-            {film.title} ({film.year}) - {film.duration} min
-            </Typography>
-      </div>
-    </div>
+    <Link to={`/films/${film.movieId}`}>
+      <Paper className={classes.paper}>
+        <img src={film.posterPath} className={classes.img} alt="movie" />
+        <div className={classes.title}>
+          <Typography variant="subtitle2" color="white">
+          </Typography>
+        </div>
+      </Paper>
+    </Link>
   );
 }

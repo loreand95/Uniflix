@@ -4,45 +4,40 @@ import { useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import BuyDialog from '../components/BuyDialog';
 
-const emails = ['username@gmail.com', 'user02@gmail.com'];
-
-export default function BuyButton({ film }) {
+export default function BuyButton({ film , setFilm}) {
 
     const history = useHistory();
-
     const user = useSelector((state) => state.user);
 
     const [open, setOpen] = React.useState(false);
-    const [selectedValue, setSelectedValue] = React.useState(emails[1]);
 
     const handleClickOpen = () => {
-
+        //Check if user is logged
         if (!user.token) {
             history.push('/signin')
+        }else{
+            setOpen(true);
         }
-
-        setOpen(true);
     };
 
     const handleClose = (value) => {
         setOpen(false);
-        setSelectedValue(value);
     };
 
     return (
         <>
             <BuyDialog
-                selectedValue={selectedValue}
                 open={open}
                 onClose={handleClose}
                 film={film}
+                setFilm={setFilm}
             />
             <Button
                 onClick={handleClickOpen}
-                disabled={film.bought}
+                disabled={!!film.purchaseDate}
                 sx={{ mt: 5, mb: 5, width: '200px' }}
                 variant='contained'>
-                {film.bought ? 'BOUGHT' : `BUY $ ${film.price}`}
+                {!!film.purchaseDate ? 'BOUGHT' : `BUY $ ${film.price}`}
             </Button>
         </>
     );

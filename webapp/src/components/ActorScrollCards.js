@@ -7,9 +7,9 @@ import { Typography } from "@mui/material";
 import ActorCard from "./ActorCard";
 import Box from '@mui/material/Box';
 
-export default function ActorScrollCards({actors}) {
+export default function ActorScrollCards({cast}) {
  
-  const [items] = React.useState(actors);
+  const [items] = React.useState(cast);
   const [selected, setSelected] = React.useState([]);
 
   const isItemSelected = (id) => !!selected.find((el) => el === id);

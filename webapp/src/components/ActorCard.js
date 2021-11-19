@@ -29,7 +29,7 @@ export default function ActorCard({ actor }) {
           color: 'white'
         }}
         component={Link}
-        to={'/actors/' + actor.id}
+        to={'/actors/' + actor.actorId}
       >
         <Typography variant="caption">
           {actor.name}

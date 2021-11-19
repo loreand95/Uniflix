@@ -27,11 +27,11 @@ public class PaymentServiceImpl implements PaymentService {
 		payment.setAmount(10);
 		payment.setUserId(UserId);
 		Gson gson = new Gson();
-		System.out.println("-------------- JSON "+gson.toJson(payment, Payment.class));
+		//System.out.println("-------------- JSON "+gson.toJson(payment, Payment.class));
 		Response response = client.accept(MediaType.APPLICATION_JSON).post(gson.toJson(payment, Payment.class));		
 		String value = response.readEntity(String.class);
-		System.out.println("-------------- TOKEN "+token);
-		System.out.println("-------------- response PAY_SERVICE_BUY"+value);
+		//System.out.println("-------------- TOKEN "+token);
+		//System.out.println("-------------- response PAY_SERVICE_BUY"+value);
 		return value;
 	}
 

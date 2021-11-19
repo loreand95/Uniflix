@@ -1,65 +1,72 @@
-import { DialogContent } from '@mui/material';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
-import Typography from '@mui/material/Typography';
-import { Box } from '@mui/system';
-import PropTypes from 'prop-types';
-import * as React from 'react';
-import { buyMovieFetch } from '../api/rest/shopService';
+import { useState } from "react";
+import { DialogContent } from "@mui/material";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import { Box } from "@mui/system";
+import PropTypes from "prop-types";
+import * as React from "react";
+import { useDispatch } from "react-redux";
+import { buyMovieAction } from "../redux/reducers/userSlice";
 
 BuyButton.propTypes = {
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
-  selectedValue: PropTypes.string.isRequired,
-  film: PropTypes.object.isRequired
+  film: PropTypes.object.isRequired,
 };
 
 export default function BuyButton(props) {
-  const { onClose, selectedValue, open, film } = props;
+  const { onClose, open, film, setFilm } = props;
 
-  const handleClose = () => {
-    onClose(selectedValue);
-  };
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
   const handleClickPay = () => {
-
-    buyMovieFetch(film.id).then(res =>{
-      film.bought=true
-      onClose(selectedValue);
-    })
-
+    setLoading(true);
+    dispatch(buyMovieAction(film.movieId))
+      .then((res) => {
+        setFilm((prevState) => ({
+          ...prevState,
+          purchaseDate: "value",
+        }));
+        onClose();
+        setLoading(false);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   return (
-    <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Buy Movie at ${film.price}</DialogTitle>
+    <Dialog onClose={onClose} open={open}>
+      <DialogTitle sx={{ textAlign: "center" }}>{film.title}</DialogTitle>
       <DialogContent>
-        <div style={{ display: 'flex' }}>
-          <img src={'https://image.tmdb.org/t/p/original' + film.posterPath}
+        <Box
+          component="div"
+          sx={{
+            alignItems: "center",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
+          <img
+            src={film.posterPath}
             alt={film.title}
             style={{
-              borderRadius: '3%',
-              height: 200
+              borderRadius: "3%",
+              width: 150,
             }}
           />
-          <Box component='div' sx={{ display: 'flex', marginLeft: '20px', flexDirection: 'column', justifyContent: 'space-between' }}>
-            <Box>
-            <Typography>
-              Title: {film.title}
-            </Typography>
-            <Typography>
-              Author: {film.author}
-            </Typography>
-            </Box>
-            <Button
-              onClick={handleClickPay}
-              sx={{ width: '200px' }}
-              variant='contained'>
-              PAY ${film.price}
-            </Button>
-          </Box>
-        </div>
+          <Button
+            onClick={handleClickPay}
+            sx={{ width: "150px", marginTop: "15px" }}
+            variant="contained"
+            disabled={loading}
+          >
+            PAY ${film.price}
+          </Button>
+        </Box>
       </DialogContent>
     </Dialog>
   );
