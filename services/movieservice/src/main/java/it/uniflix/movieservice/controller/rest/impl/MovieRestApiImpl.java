@@ -28,6 +28,10 @@ public class MovieRestApiImpl implements MovieRestApi {
 
 	public Movie getMovie(long id) {
 		MovieService movieService = new MovieServiceImpl();
+		
+		// check if movie is present in the db
+		if (!movieService.isMoviePresent(id)) return null;
+		
 		Movie movie = null;
 		
 		ActorSoapApiImplService actorService = new ActorSoapApiImplService();
@@ -50,6 +54,7 @@ public class MovieRestApiImpl implements MovieRestApi {
 		System.out.println("Invoking getMovieCastAsync(request, actorAsyncHandler) ...");
 		Future<?> response = port.getMovieCastAsync(request, actorAsyncHandler);
 		GetReviewsResponse reply2 = null;
+		
 		
 		while(!response.isDone()) {
 			

@@ -14,7 +14,7 @@ public class GenreRepoImpl implements GenreRepo {
 	private MongoCollection<Genre> genresColl;
 	
 	public GenreRepoImpl() {
-		genresColl = MongoConnection.getDatabase().getCollection("Genres", Genre.class);
+		genresColl = MongoConnection.getInstance().getDatabase().getCollection("Genres", Genre.class);
 	}
 
 	public List<Genre> getAll() {

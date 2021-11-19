@@ -11,4 +11,6 @@ public interface MovieRepo {
 	List<Movie> getPopularMovies();
 	
 	List<Movie> getMoviesByGenre(long genreId);
+	
+	boolean isMoviePresent(long id);
 }

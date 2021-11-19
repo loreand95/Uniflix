@@ -17,12 +17,12 @@ public class MovieRepoImpl implements MovieRepo {
 	private MongoCollection<Movie> moviesColl;
 	
 	public MovieRepoImpl() {
-		moviesColl = MongoConnection.getDatabase().getCollection("Movies", Movie.class);
+		moviesColl = MongoConnection.getInstance().getDatabase().getCollection("Movies", Movie.class);
 	}
 	
 	public Movie getMovie(long id) {
 				
-		Movie movie = moviesColl.find(eq("movieId",id)).first();
+		Movie movie = moviesColl.find(eq("movieId", id)).first();
 		
 		if (movie == null) {
 		    return null;
@@ -49,6 +49,17 @@ public class MovieRepoImpl implements MovieRepo {
 		    return null;
 		} else {
 		    return movies;
+		}
+	}
+
+	@Override
+	public boolean isMoviePresent(long id) {
+		Movie movie = moviesColl.find(eq("movieId", id)).first();
+		
+		if (movie == null) {
+		    return false;
+		} else {
+		    return true;
 		}
 	}
 

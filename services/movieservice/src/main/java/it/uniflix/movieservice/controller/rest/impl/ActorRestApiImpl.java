@@ -16,7 +16,7 @@ public class ActorRestApiImpl implements ActorRestApi {
 		ActorSoapApi port = service.getActorSoapApiImplPort();
 
 		GetActor request = new GetActor(); 
-		request.setArg0(2524L);
+		request.setArg0(id);
 		
 		// synchronous request
 		GetActorResponse response = port.getActor(request);

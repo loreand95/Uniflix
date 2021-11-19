@@ -10,5 +10,7 @@ public interface MovieService {
 	List<Movie> getPopularMovies();
 	
 	List<Movie> getMoviesByGenre(long genreId);
+	
+	boolean isMoviePresent(long movieId);
 
 }

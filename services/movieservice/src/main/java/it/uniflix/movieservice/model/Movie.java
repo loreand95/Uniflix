@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import it.uniflix.actorservice.controller.soap.ActorCast;
 import it.uniflix.reviewservice.controller.soap.Review;
 
-@XmlRootElement(name="Movies")
+@XmlRootElement(name="Movie")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Movie {
 	

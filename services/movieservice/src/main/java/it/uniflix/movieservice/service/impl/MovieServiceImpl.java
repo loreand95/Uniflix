@@ -27,4 +27,9 @@ public class MovieServiceImpl implements MovieService{
 		return movieRepo.getMoviesByGenre(genreId);
 	}
 
+	@Override
+	public boolean isMoviePresent(long movieId) {
+		return movieRepo.isMoviePresent(movieId);
+	}
+
 }
