@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import * as React from "react";
 import { useDispatch } from "react-redux";
 import { buyMovieAction } from "../redux/reducers/userSlice";
+import CircularProgress from '@mui/material/CircularProgress';
 
 BuyButton.propTypes = {
   onClose: PropTypes.func.isRequired,
@@ -55,16 +56,20 @@ export default function BuyButton(props) {
             alt={film.title}
             style={{
               borderRadius: "3%",
-              width: 150,
+              width: 200,
             }}
           />
           <Button
             onClick={handleClickPay}
-            sx={{ width: "150px", marginTop: "15px" }}
+            sx={{ width: "200px", marginTop: "15px" }}
             variant="contained"
             disabled={loading}
           >
-            PAY ${film.price}
+            {loading ? (
+              <CircularProgress size={20} style={{ color: "white" }} />
+            ) : (
+              `PAY ${film.price}`
+            )}
           </Button>
         </Box>
       </DialogContent>
