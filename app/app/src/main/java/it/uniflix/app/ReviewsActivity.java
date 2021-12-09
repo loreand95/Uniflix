@@ -1,11 +1,8 @@
 package it.uniflix.app;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,7 +19,7 @@ import java.util.Vector;
 
 public class ReviewsActivity extends AppCompatActivity {
 
-    private RecyclerViewAdapter adapter;
+    private ReviewRecyclerViewAdapter adapter;
     List<SoapObject> list = new ArrayList<>();
     private RecyclerView recyclerView;
 
@@ -38,7 +35,7 @@ public class ReviewsActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new RecyclerViewAdapter(getApplicationContext(), list);
+        adapter = new ReviewRecyclerViewAdapter(getApplicationContext(), list);
         recyclerView.setAdapter(adapter);
 
         AsyncCallWS task = new AsyncCallWS();
@@ -88,7 +85,7 @@ public class ReviewsActivity extends AppCompatActivity {
         // CALLING getReviews
 
         String NAMESPACE = "http://soap.controller.reviewservice.uniflix.it/";
-        String METHOD_NAME = "getReviewsNoWrapper";
+        String METHOD_NAME = "getReviews";
         String WSDL_URL = "http://10.0.2.2:8080/reviewservice/review";
         String SOAP_ACTION = "";
 

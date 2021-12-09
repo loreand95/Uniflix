@@ -13,7 +13,7 @@ import org.ksoap2.serialization.SoapObject;
 
 import java.util.List;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+public class ReviewRecyclerViewAdapter extends RecyclerView.Adapter<ReviewRecyclerViewAdapter.ViewHolder> {
 
     private String TAG = "RVA";
 
@@ -21,7 +21,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private LayoutInflater mInflater;
 
     // data is passed into the constructor
-    RecyclerViewAdapter(Context context, List<SoapObject> data) {
+    ReviewRecyclerViewAdapter(Context context, List<SoapObject> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
