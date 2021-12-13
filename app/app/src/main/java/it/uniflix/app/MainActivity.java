@@ -1,18 +1,73 @@
 package it.uniflix.app;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
+
 public class MainActivity extends AppCompatActivity {
+
+    private RecyclerViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_reviews);
+
+        // set up the RecyclerView
+        final RecyclerView recyclerView = findViewById(R.id.rvResponse);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        RequestParams params = new RequestParams();
+        params.add("_limit", "100");
+
+        RestClient.get("movie", params , new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                // Handle success
+                Log.i("INFO", new String(responseBody));
+                List<String> list = new ArrayList<>();
+
+                try {
+                    JSONArray resp = new JSONArray(new String(responseBody));
+                    list = new ArrayList<String>();
+                    for (int i=0; i<resp.length(); i++) {
+                        JSONObject respObj = (JSONObject) resp.get(i);
+                        list.add( respObj.optString("id") + " " + respObj.optString("title"));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                adapter = new RecyclerViewAdapter(getApplicationContext(), list);
+                recyclerView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                // Handle error
+                error.printStackTrace();
+            }
+        });
+
     }
 
     @Override
