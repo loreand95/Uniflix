@@ -37,8 +37,8 @@ public class ReviewRecyclerViewAdapter extends RecyclerView.Adapter<ReviewRecycl
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         SoapObject review = mData.get(position);
-        String author = review.getPropertyAsString("title");
-        String content = review.getPropertyAsString("originalTitle");
+        String author = review.getPropertyAsString("author");
+        String content = review.getPropertyAsString("content");
         Log.d(TAG, "author: " + author);
         holder.authorTextView.setText(author);
         holder.contentTextView.setText(content);

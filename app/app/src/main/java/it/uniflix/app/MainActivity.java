@@ -24,15 +24,15 @@ import cz.msebera.android.httpclient.Header;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerViewAdapter adapter;
+    private MovieRecyclerViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reviews);
+        setContentView(R.layout.activity_main);
 
         // set up the RecyclerView
-        final RecyclerView recyclerView = findViewById(R.id.rvResponse);
+        final RecyclerView recyclerView = findViewById(R.id.rvMain);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                adapter = new RecyclerViewAdapter(getApplicationContext(), list);
+                adapter = new MovieRecyclerViewAdapter(getApplicationContext(), list);
                 recyclerView.setAdapter(adapter);
             }
 
