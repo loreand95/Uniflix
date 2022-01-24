@@ -1,6 +1,7 @@
 package it.uniflix.app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +13,15 @@ import java.util.List;
 
 public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecyclerViewAdapter.ViewHolder> {
 
-    private List<String> mData;
+    private List<Movie> mData;
     private LayoutInflater mInflater;
-    private ItemClickListener mClickListener;
+    private Context context;
 
     // data is passed into the constructor
-    MovieRecyclerViewAdapter(Context context, List<String> data) {
+    MovieRecyclerViewAdapter(Context context, List<Movie> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
+        this.context = context;
     }
 
     // inflates the row layout from xml when needed
@@ -32,8 +34,8 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String animal = mData.get(position);
-        holder.myTextView.setText(animal);
+        Movie movie = mData.get(position);
+        holder.myTextView.setText(movie.getTitle());
     }
 
     // total number of rows
@@ -44,33 +46,29 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
 
 
 // stores and recycles views as they are scrolled off screen
-public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class ViewHolder extends RecyclerView.ViewHolder {
     TextView myTextView;
 
     ViewHolder(View itemView) {
         super(itemView);
         myTextView = itemView.findViewById(R.id.rvItem);
-        itemView.setOnClickListener(this);
+
+        // Define the click event on item
+        itemView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                // Open another Activity and pass to it the right city
+                Movie movie = mData.get(getAdapterPosition());
+                Intent intent = new Intent(context, ReviewsActivity.class);
+                intent.putExtra("movie", movie);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+
+        });
     }
 
-    @Override
-    public void onClick(View view) {
-        if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
-    }
-}
-
-    // convenience method for getting data at click position
-    String getItem(int id) {
-        return mData.get(id);
-    }
-
-    // allows clicks events to be caught
-    void setClickListener(ItemClickListener itemClickListener) {
-        this.mClickListener = itemClickListener;
-    }
-
-    // parent activity will implement this method to respond to click events
-    public interface ItemClickListener {
-        void onItemClick(View view, int position);
     }
 }

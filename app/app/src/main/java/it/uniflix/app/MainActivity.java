@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -25,6 +26,7 @@ import cz.msebera.android.httpclient.Header;
 public class MainActivity extends AppCompatActivity {
 
     private MovieRecyclerViewAdapter adapter;
+    List<Movie> movies = new ArrayList<Movie>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,20 +46,19 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 // Handle success
                 Log.i("INFO", new String(responseBody));
-                List<String> list = new ArrayList<>();
 
                 try {
                     JSONArray resp = new JSONArray(new String(responseBody));
-                    list = new ArrayList<String>();
                     for (int i=0; i<resp.length(); i++) {
                         JSONObject respObj = (JSONObject) resp.get(i);
-                        list.add( respObj.optString("id") + " " + respObj.optString("title"));
+                        Movie m = new Movie(respObj.getString("movieId"), respObj.getString("title"), respObj.getString("posterPath"));
+                        movies.add(m);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-                adapter = new MovieRecyclerViewAdapter(getApplicationContext(), list);
+                adapter = new MovieRecyclerViewAdapter(getApplicationContext(), movies);
                 recyclerView.setAdapter(adapter);
             }
 
