@@ -25,11 +25,17 @@ public class ReviewsActivity extends AppCompatActivity {
 
     private String TAG = "SOAPClient";
 
+    private Movie movie;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reviews);
 
+        //in SecondActivity
+        if(getIntent().getExtras() != null) {
+            movie = getIntent().getParcelableExtra("movie");
+        }
         // set up the RecyclerView
         recyclerView = findViewById(R.id.rvResponse);
         recyclerView.setHasFixedSize(true);
@@ -39,7 +45,8 @@ public class ReviewsActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         AsyncCallWS task = new AsyncCallWS();
-        task.execute("580489");
+        if 
+        task.execute(movie.getMovieId());
 
 
     }
