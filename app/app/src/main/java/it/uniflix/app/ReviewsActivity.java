@@ -32,10 +32,7 @@ public class ReviewsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reviews);
 
-        //in SecondActivity
-        if(getIntent().getExtras() != null) {
-            movie = getIntent().getParcelableExtra("movie");
-        }
+
         // set up the RecyclerView
         recyclerView = findViewById(R.id.rvResponse);
         recyclerView.setHasFixedSize(true);
@@ -45,8 +42,12 @@ public class ReviewsActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         AsyncCallWS task = new AsyncCallWS();
-        if 
-        task.execute(movie.getMovieId());
+
+        //in SecondActivity
+        if(getIntent().getExtras() != null) {
+            movie = getIntent().getParcelableExtra("movie");
+            task.execute(movie.getMovieId());
+        }
 
 
     }

@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
                         JSONObject respObj = (JSONObject) resp.get(i);
                         Movie m = new Movie(respObj.getString("movieId"), respObj.getString("title"), respObj.getString("posterPath"));
                         movies.add(m);
+                        Log.i("MOVIE", m.toString());
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
