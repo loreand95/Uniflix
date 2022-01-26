@@ -1,5 +1,6 @@
 package it.uniflix.app;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,6 +34,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // ActionBar title
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null)
+        {
+            actionBar.setTitle("Uniflix");
+        }
+
         // set up the RecyclerView
         final RecyclerView recyclerView = findViewById(R.id.rvMain);
         recyclerView.setHasFixedSize(true);
@@ -41,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         RequestParams params = new RequestParams();
         params.add("_limit", "100");
 
-        RestClient.get("movie", params , new AsyncHttpResponseHandler() {
+        RestClient.get("rest/movies", params , new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 // Handle success
@@ -51,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                     JSONArray resp = new JSONArray(new String(responseBody));
                     for (int i=0; i<resp.length(); i++) {
                         JSONObject respObj = (JSONObject) resp.get(i);
-                        Movie m = new Movie(respObj.getString("movieId"), respObj.getString("title"), respObj.getString("posterPath"));
+                        Movie m = new Movie(respObj.getString("movieId"), respObj.getString("title"), respObj.getString("posterPath"), respObj.getString("overview"));
                         movies.add(m);
                         Log.i("MOVIE", m.toString());
                     }
@@ -84,9 +92,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
-            case R.id.reviews:
-                Intent intent = new Intent(getApplicationContext(), ReviewsActivity.class);
-                startActivity(intent);
+            case R.id.exit:
+                finish();
+                System.exit(0);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

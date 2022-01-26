@@ -3,7 +3,10 @@ package it.uniflix.app;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,6 +36,7 @@ public class ReviewsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_reviews);
 
 
+
         // set up the RecyclerView
         recyclerView = findViewById(R.id.rvResponse);
         recyclerView.setHasFixedSize(true);
@@ -47,6 +51,13 @@ public class ReviewsActivity extends AppCompatActivity {
         if(getIntent().getExtras() != null) {
             movie = getIntent().getParcelableExtra("movie");
             task.execute(movie.getMovieId());
+
+            // ActionBar title
+            ActionBar actionBar = getSupportActionBar();
+            if(actionBar != null)
+            {
+                actionBar.setTitle(movie.getTitle());
+            }
         }
 
 
@@ -128,6 +139,27 @@ public class ReviewsActivity extends AppCompatActivity {
         }
         catch(Exception ex) {
             Log.e(TAG, "Error: " + ex.getMessage());
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+
+        getMenuInflater().inflate(R.menu.menu_reviews, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.back:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+
         }
     }
 

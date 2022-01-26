@@ -44,5 +44,10 @@ dependencies {
     implementation 'com.google.code.ksoap2-android:ksoap2-android:3.6.2'
     implementation 'com.loopj.android:android-async-http:1.4.9'
 
+    // Picasso: loading images from web
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    implementation 'org.apache.commons:commons-text:1.6'
+
 
 }

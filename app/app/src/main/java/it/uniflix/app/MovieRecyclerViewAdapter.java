@@ -5,9 +5,14 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
@@ -35,7 +40,11 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Movie movie = mData.get(position);
-        holder.myTextView.setText(movie.getTitle());
+        holder.title.setText(movie.getTitle());
+
+        String trimmed_ov =StringUtils.abbreviate(movie.getOverview(), 150);
+        holder.overview.setText(trimmed_ov);
+        Picasso.get().load(movie.getPosterPath()).into(holder.poster);
     }
 
     // total number of rows
@@ -47,11 +56,16 @@ public class MovieRecyclerViewAdapter extends RecyclerView.Adapter<MovieRecycler
 
 // stores and recycles views as they are scrolled off screen
 public class ViewHolder extends RecyclerView.ViewHolder {
-    TextView myTextView;
+    TextView title;
+    TextView overview;
+    ImageView poster;
+
 
     ViewHolder(View itemView) {
         super(itemView);
-        myTextView = itemView.findViewById(R.id.rvItem);
+        title = itemView.findViewById(R.id.movie_title);
+        overview = itemView.findViewById(R.id.movie_overview);
+        poster = itemView.findViewById(R.id.movie_poster);
 
         // Define the click event on item
         itemView.setOnClickListener(new View.OnClickListener() {

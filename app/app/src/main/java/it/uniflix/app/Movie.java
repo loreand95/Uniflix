@@ -10,17 +10,20 @@ public class Movie implements Parcelable {
                 "movieId='" + movieId + '\'' +
                 ", title='" + title + '\'' +
                 ", posterPath='" + posterPath + '\'' +
+                ", overview='" + overview + '\'' +
                 '}';
     }
 
     String movieId;
     String title;
     String posterPath;
+    String overview;
 
     protected Movie(Parcel in) {
         movieId = in.readString();
         title = in.readString();
         posterPath = in.readString();
+        overview = in.readString();
     }
 
     public String getMovieId() {
@@ -47,10 +50,19 @@ public class Movie implements Parcelable {
         this.posterPath = posterPath;
     }
 
-    public Movie(String movieId, String title, String posterPath) {
+    public String getOverview() {
+        return overview;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+    public Movie(String movieId, String title, String posterPath, String overview) {
         this.movieId = movieId;
         this.title = title;
         this.posterPath = posterPath;
+        this.overview = overview;
     }
 
     @Override
@@ -63,6 +75,7 @@ public class Movie implements Parcelable {
         parcel.writeString(movieId);
         parcel.writeString(title);
         parcel.writeString(posterPath);
+        parcel.writeString(overview);
     }
 
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {

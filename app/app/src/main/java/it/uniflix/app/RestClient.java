@@ -5,7 +5,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 public class RestClient {
-    private static final String BASE_URL = "http://10.0.2.2:8080/movieservice/rest/";
+    private static final String BASE_URL = "http://34.121.219.96:3002/";
 
     private static AsyncHttpClient client = new AsyncHttpClient();
 
