@@ -17,11 +17,9 @@ public class ReviewSoapApiImpl implements ReviewSoapApi{
 
 	@Override
 	@UseAsyncMethod
-	public List<Review> getReviews(long movieId) {	
-		System.out.println("Controller SOAP getReviews movieId:"+ movieId);
+	public List<Review> getReviews(long movieId) {
 		ReviewService reviewService = new ReviewServiceImpl();
 		List <Review> reviews=reviewService.getAllByMovie(movieId);
-		//System.out.println("Controller SOAP getReviews:"+ reviews);
 		return reviews;
 	}
 	
@@ -37,19 +35,15 @@ public class ReviewSoapApiImpl implements ReviewSoapApi{
 		final ServerAsyncResponse<GetReviewsResponse> asyncResponse = new ServerAsyncResponse<GetReviewsResponse>();
 		new Thread() {
 			public void run() {
-				GetReviewsResponse response = new GetReviewsResponse();
-				
-				
+				GetReviewsResponse response = new GetReviewsResponse();			
 				ReviewService reviewService = new ReviewServiceImpl();
 				List <Review> reviews = new ArrayList<Review> ();
 				reviews=reviewService.getAllByMovie(movieId);
-				//System.out.println("Controller SOAP getReviews:"+ reviews);
 				response.setReviews(reviews);
 				asyncResponse.set(response);
 				asyncHandler.handleResponse(asyncResponse);
 			}
 		}.start();
-		//System.out.println("Controller SOAP getReviews Async response" + asyncResponse);
 		return asyncResponse;
 	}
 

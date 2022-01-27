@@ -19,8 +19,7 @@ public class MongoConnection {
 	
 	public static MongoDatabase getDatabase() {
 
-		ConnectionString connectionString = new ConnectionString(CONNECTION_STRING);
-		
+		ConnectionString connectionString = new ConnectionString(CONNECTION_STRING);		
         // create codec registry for POJOs
         CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
                 fromProviders(PojoCodecProvider.builder().automatic(true).build()));

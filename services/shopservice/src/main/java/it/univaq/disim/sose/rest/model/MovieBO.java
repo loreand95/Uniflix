@@ -27,7 +27,6 @@ public class MovieBO extends Movie{
 		return purchaseDate;
 	}
 
-
 	public void setPurchaseDate(String purchaseDate) {
 		this.purchaseDate = purchaseDate;
 	}

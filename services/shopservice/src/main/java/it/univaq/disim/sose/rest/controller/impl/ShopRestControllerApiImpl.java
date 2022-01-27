@@ -16,7 +16,6 @@ public class ShopRestControllerApiImpl implements ShopRestControllerApi{
 
 	@Context
 	HttpServletRequest httpServletRequest;
-
 	private BusinessService shopService = new BusinessServiceImpl();
 	private MovieServiceImpl movieService = new MovieServiceImpl();
 	private PaymentServiceImpl paymentService = new PaymentServiceImpl();
@@ -25,7 +24,6 @@ public class ShopRestControllerApiImpl implements ShopRestControllerApi{
 
 	@Override
 	public List<MovieBO> getAllMovies() {
-
 		String authTokenHeader = httpServletRequest.getHeader("Authorization");
 		List <MovieBO> movies = new ArrayList<>();
 		String userId = (String) httpServletRequest.getAttribute("userId");

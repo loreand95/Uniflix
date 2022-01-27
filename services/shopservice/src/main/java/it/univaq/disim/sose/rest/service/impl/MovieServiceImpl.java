@@ -19,6 +19,7 @@ import it.univaq.disim.sose.rest.service.MovieService;
 public class MovieServiceImpl implements MovieService {
 	private UserServiceImpl userService = new UserServiceImpl();
 
+	/*
 	// TODO test: questo metodo probabilmente va eliminato 
 	public  void getAll2() {
 		WebClient client = WebClient.create( EndPointApi.MOVIE_SERVICE);
@@ -40,7 +41,7 @@ public class MovieServiceImpl implements MovieService {
 		}
 	}
 
-
+*/
 
 	public MovieServiceImpl() {
 		super();

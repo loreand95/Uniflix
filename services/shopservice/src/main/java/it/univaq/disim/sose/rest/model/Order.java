@@ -19,10 +19,7 @@ public class Order {
 
 	private double price;
 
-
 	public Order() {}
-
-
 
 	public String getId() {
 		return id;

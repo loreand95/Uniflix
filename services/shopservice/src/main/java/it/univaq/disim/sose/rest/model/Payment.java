@@ -13,11 +13,7 @@ public class Payment {
 
 	private double amount; 
 
-
-
 	public Payment() {}
-
-
 
 	public String getUserId() {
 		return userId;

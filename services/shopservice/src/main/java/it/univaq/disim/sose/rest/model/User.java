@@ -22,10 +22,7 @@ public class User {
 
 	private String fullname;
 
-
-
 	public User() {}
-
 
 	public String getId() {
 		return id;

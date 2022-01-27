@@ -18,8 +18,7 @@ public interface ReviewSoapApi {
 	@WebMethod
 	@ResponseWrapper(localName = "getReviewsResponse", 
 		className = "it.uniflix.reviewservice.model.GetReviewsResponse")
-	List<Review> getReviews(long movieId);
-	
+	List<Review> getReviews(long movieId);	
 	
 	@WebMethod
 	@ResponseWrapper(localName = "getReviewsResponse", 
