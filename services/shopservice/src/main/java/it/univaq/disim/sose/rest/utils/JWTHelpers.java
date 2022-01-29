@@ -1,4 +1,4 @@
-package it.univaq.disim.sose.rest.utils;
+/*package it.univaq.disim.sose.rest.utils;
 
 import java.security.NoSuchAlgorithmException;
 
@@ -54,3 +54,4 @@ public class JWTHelpers {
 		.compact();
     }
 }
+*/

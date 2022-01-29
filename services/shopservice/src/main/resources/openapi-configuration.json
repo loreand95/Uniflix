@@ -5,8 +5,8 @@
 	"openAPI": {
 		"info": {
 			"version": "1.0.0",
-			"title": "The name of the API goes here!",
-			"description": "The description of the API goes here!",
+			"title": "Shop Service",
+			"description": "Shop Service API DOcumentation",
 			"contact": {"email": "cxf-dev@apache.org"},
 			"license": {
 				"name": "Apache 2.0",
@@ -15,8 +15,8 @@
 		},
 		"servers": [
 			{
-				"url": "http://localhost:8080/shopservice",
-				"description": "The description of the Server goes here!"
+				"url": "http://localhost:8080/shopservice/",
+				"description": "The Shop Service implement the digital shop service of Uniflix"
 			}
 		]
 	},
