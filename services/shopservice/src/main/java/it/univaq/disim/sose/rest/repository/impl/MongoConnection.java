@@ -10,9 +10,7 @@ public class MongoConnection {
 	
 	private static final String CONNECTION_STRING = "mongodb+srv://admin:WvUEreguSld7PnCL@cluster0.xmrck.mongodb.net/Uniflix?retryWrites=true&w=majority";
 	private static final String DATABASE_NAME = "Uniflix";
-
-	private static MongoConnection mongoConnection;
-	
+	private static MongoConnection mongoConnection;	
 	private static MongoClient mongoClient;
 	
 	private MongoConnection() {

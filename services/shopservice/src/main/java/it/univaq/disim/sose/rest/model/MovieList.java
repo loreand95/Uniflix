@@ -1,4 +1,4 @@
-package it.univaq.disim.sose.rest.model;
+/*package it.univaq.disim.sose.rest.model;
 
 import java.util.ArrayList;
 
@@ -16,3 +16,4 @@ public class MovieList  extends ArrayList<Movie> {
 	public MovieList() {}
 
 }
+*/

@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class Payment {
 
 	private String userId;
-
 	private double amount; 
 
 	public Payment() {}

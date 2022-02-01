@@ -10,38 +10,12 @@ import org.apache.cxf.jaxrs.client.WebClient;
 import org.json.JSONArray;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import it.univaq.disim.sose.rest.utils.EndPointApi;
-import it.univaq.disim.sose.rest.model.Movie;
 import it.univaq.disim.sose.rest.model.MovieBO;
 import it.univaq.disim.sose.rest.service.MovieService;
 
 public class MovieServiceImpl implements MovieService {
 	private UserServiceImpl userService = new UserServiceImpl();
-
-	/*
-	// TODO test: questo metodo probabilmente va eliminato 
-	public  void getAll2() {
-		WebClient client = WebClient.create( EndPointApi.MOVIE_SERVICE);
-		Response response = client.accept(MediaType.APPLICATION_JSON).get();
-		String value = response.readEntity(String.class);	
-		JSONArray moviesJson = new JSONArray(value);
-		ObjectMapper mapper = new ObjectMapper();
-		List<Movie> movies = new ArrayList<>();
-
-		for(Object o: moviesJson) {
-			try {
-				Movie movie = mapper.readValue(o.toString(), Movie.class);
-
-				movies.add(movie);
-			} catch (JsonProcessingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
-
-*/
 
 	public MovieServiceImpl() {
 		super();
@@ -80,8 +54,7 @@ public class MovieServiceImpl implements MovieService {
 		}
 		
 		//ESTIMATE PRICE TODO
-		movie.setPrice(3.99);
-		
+		movie.setPrice(3.99);		
 		if(userId != null) {
 			List <MovieBO> library = new ArrayList<>();
 			library = userService.getUserLibrary(authTokenHeader);			

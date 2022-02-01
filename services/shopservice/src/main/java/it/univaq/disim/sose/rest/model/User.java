@@ -13,13 +13,9 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class User {
 
 	private String id;
-
 	private String email;
-
 	private String password;
-
 	private String token;
-
 	private String fullname;
 
 	public User() {}

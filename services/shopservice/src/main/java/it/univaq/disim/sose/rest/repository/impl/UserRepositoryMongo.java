@@ -155,7 +155,6 @@ public class UserRepositoryMongo implements UserRepository{
 		MongoCollection<Document> collection = database.getCollection("Users");
 		Gson gson= new Gson();
 		String orderStr = gson.toJson(order, Order.class);
-
 		Bson filter = Filters.eq("id", userId);
 		Bson update = Updates.push("library", Document.parse(orderStr));
 		FindOneAndUpdateOptions options = new FindOneAndUpdateOptions()

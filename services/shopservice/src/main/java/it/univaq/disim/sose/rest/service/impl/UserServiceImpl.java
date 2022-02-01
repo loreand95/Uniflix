@@ -24,10 +24,7 @@ public class UserServiceImpl implements UserService{
 
 	private UserRepository userRepo = new UserRepositoryMongo();
 
-	public List<MovieBO> getUserLibrary(String token){	
-		//WebClient client = WebClient.create( EndPointApi.USER_SERVICE_GET_LIBRARY);
-
-
+	public List<MovieBO> getUserLibrary(String token){
 		WebClient client = WebClient.create( EndPointApi.USER_SERVICE_GET_LIBRARY);
 		client.accept(MediaType.APPLICATION_JSON);
 		client.header("Authorization", token);

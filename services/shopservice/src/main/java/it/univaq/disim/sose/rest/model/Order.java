@@ -12,13 +12,9 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class Order {
 
 	private String id;
-
 	private long movieId;
-
 	private String purchaseDate;
-
 	private double price;
-
 	public Order() {}
 
 	public String getId() {

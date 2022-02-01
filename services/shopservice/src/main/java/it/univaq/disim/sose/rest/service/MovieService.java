@@ -5,6 +5,5 @@ import it.univaq.disim.sose.rest.model.MovieBO;
 
 public interface MovieService {
 	public List<MovieBO> getAll();
-	//public void getAll2();
 	public MovieBO getMovieById(String movieId,String userId, String authTokenHeader);
 }
