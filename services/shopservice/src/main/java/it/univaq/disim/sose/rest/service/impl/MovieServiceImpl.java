@@ -52,8 +52,7 @@ public class MovieServiceImpl implements MovieService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		//ESTIMATE PRICE TODO
+		//ESTIMATE PRICE Example then if a user is logged the purchase date is filled from user library
 		movie.setPrice(3.99);		
 		if(userId != null) {
 			List <MovieBO> library = new ArrayList<>();
